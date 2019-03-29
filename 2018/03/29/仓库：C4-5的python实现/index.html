@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>C4.5的python实现 | ylylhl&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="尝试着写了一下，只是在重复造轮子而已">
+<meta name="keywords" content="机器学习,python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C4.5的python实现">
+<meta property="og:url" content="http://yoursite.com/2018/03/29/仓库：C4-5的python实现/index.html">
+<meta property="og:site_name" content="ylylhl&#39;s blog">
+<meta property="og:description" content="尝试着写了一下，只是在重复造轮子而已">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-29T06:40:52.518Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C4.5的python实现">
+<meta name="twitter:description" content="尝试着写了一下，只是在重复造轮子而已">
+  
+    <link rel="alternative" href="/atom.xml" title="ylylhl&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: false,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img src="/img/head.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">ylylhl</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">明日のメダルと掴む腕</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="search" placeholder=" Search...">
+            </form>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">-首页-</a></li>
+                        
+                            <li><a href="/archives">-归档-</a></li>
+                        
+                            <li><a href="/about">-关于-</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=laKtpKWmpaKspdXk5Lv2_vg" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/ylylhl" title="github">github</a>
+                            
+                                <a class="fl weibo" target="_blank" href="https://weibo.com/u/5655801541" title="weibo">weibo</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://obolu.github.io/">obolu</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">日常摸鱼，长期搬砖，ygo娱乐玩家，来打只看不产，布鲁游天下第一。</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">ylylhl</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img src="/img/head.png" class="js-avatar" style="width: 100%; height: 100%; opacity: 1;">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">ylylhl</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">明日のメダルと掴む腕</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">-首页-</a></li>
+                
+                    <li><a href="/archives">-归档-</a></li>
+                
+                    <li><a href="/about">-关于-</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=laKtpKWmpaKspdXk5Lv2_vg" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/ylylhl" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="https://weibo.com/u/5655801541" title="weibo">weibo</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-仓库：C4-5的python实现" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/03/29/仓库：C4-5的python实现/" class="article-date">
+      <time datetime="2018-03-29T13:54:00.000Z" itemprop="datePublished">2018-03-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C4.5的python实现
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in index | 首页摘要><br>尝试着写了一下，只是在重复造轮子而已<br><a id="more"></a></excerpt></p>
+<p><the rest of contents | 余下全文><br>开始后的第三周，尝试着写了一点。<br>edit：于4月8日增加连续值处理，具体参见<a href="https://www.jianshu.com/p/f7219841916a" target="_blank" rel="noopener">https://www.jianshu.com/p/f7219841916a</a><br>edit：4月10日消减部分代码量<br>数据集如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">OUTLOOK TEMPERATURE HUMIDITY WINDY ACTIVATE</span><br><span class="line">sunny 85 85 weak no</span><br><span class="line">sunny 80 90 strong no</span><br><span class="line">overcast 83 78 weak yes</span><br><span class="line">rainy 70 96 weak yes</span><br><span class="line">rainy 68 80 weak yes</span><br><span class="line">rainy 65 70 strong no</span><br><span class="line">overcast 64 65 strong yes</span><br><span class="line">sunny 72 95 weak no</span><br><span class="line">sunny 69 70 weak yes</span><br><span class="line">rainy 75 80 weak yes</span><br><span class="line">sunny 75 70 strong yes</span><br><span class="line">overcast 72 90 strong yes</span><br><span class="line">overcast 81 75 weak yes</span><br><span class="line">rainy 71 80 strong no</span><br></pre></td></tr></table></figure></the></p>
+<p>思路很迷，如果有谁不幸看到了这篇请不要当做参考会被带到沟里的……<br>有1点问题，关于max默认取第一个值……比如两个属性的信息增益率相等且都最大，取不同的属性作为节点会生成不同的树（。<br>所以该怎么办哦www</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding = utf-8</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">●C4.5 v1.1</span></span><br><span class="line"><span class="string">作者：Kadoya</span></span><br><span class="line"><span class="string">创建日期：18.3.24</span></span><br><span class="line"><span class="string">最近修改时间：18.4.10</span></span><br><span class="line"><span class="string">程序目的：一个树:D</span></span><br><span class="line"><span class="string">主要算法说明：</span></span><br><span class="line"><span class="string">        1.说白了（大概）就是权重排序，或者看下面这一堆废话也行。</span></span><br><span class="line"><span class="string">            读取文档→拿到属性→调stardust()拿到具体数据（列表）→</span></span><br><span class="line"><span class="string">            调continuous()处理连续值→调entropy()拿到结果熵（playgolf?）→</span></span><br><span class="line"><span class="string">            将数据集，属性和结果熵传入gotcha()，即用于找到下一个节点和子集的函数</span></span><br><span class="line"><span class="string">            ①如果结果是纯的或满足某种条件则return（对应书上第2~4行）</span></span><br><span class="line"><span class="string">            ②调gainratio()得到每个属性对应的信息增益率并排序，取最大的作为节点</span></span><br><span class="line"><span class="string">            ③生成基于该属性不同取值的不同子集，计算子集的结果熵并再次调用gotcha()（第11~14行）</span></span><br><span class="line"><span class="string">            返回tree并输出（第15行）</span></span><br><span class="line"><span class="string">        2.凑不齐三点了不管了x</span></span><br><span class="line"><span class="string">程序备注：</span></span><br><span class="line"><span class="string">        1.蜃楼啥时候上steam啊……</span></span><br><span class="line"><span class="string">        2.教授！！！来我迦了！！！毒针地狱.jpg 为了刷毒针正式移民乌鲁克……</span></span><br><span class="line"><span class="string">        3.一人血书医生早日实装（</span></span><br><span class="line"><span class="string">更新历史：</span></span><br><span class="line"><span class="string">        3.28 v1.0</span></span><br><span class="line"><span class="string">            ①基本功能完成，小bug不计其数，智障操作不计其数</span></span><br><span class="line"><span class="string">        4.8 update v1.05</span></span><br><span class="line"><span class="string">            ①增加连续值处理</span></span><br><span class="line"><span class="string">            ②可以引random达到增益率相同时的选择伪随机而非直接[0]选择第一个但是没改</span></span><br><span class="line"><span class="string">        4.10 update v1.1</span></span><br><span class="line"><span class="string">            ①连续值那里原本的int改了float，免得有小数</span></span><br><span class="line"><span class="string">            ②精简部分代码，纯代码部分压缩到80行</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">说实话上次好像说了有个bug要改，想不起来了（……</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">stardust</span><span class="params">(data)</span>:</span><span class="comment">#具体数据,参数：读到的源文档</span></span><br><span class="line">    attributes=[]<span class="comment">#属性:outlook,temperature,humidity,windy之类</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> data[<span class="number">0</span>].split(<span class="string">' '</span>)[<span class="number">0</span>:<span class="number">-1</span>]:<span class="comment">#最后一列是结果(play golf?)所以不算</span></span><br><span class="line">        attributes.append(i)          <span class="comment">#拿到所有属性</span></span><br><span class="line">    lost_star=[]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> data[<span class="number">1</span>:]:<span class="comment">#第一行是说明所以不算，下一个.jpg</span></span><br><span class="line">        lost_star.append(i.strip(<span class="string">'\n'</span>).split(<span class="string">' '</span>)[<span class="number">0</span>:])<span class="comment">#删除换行符，以空格分割</span></span><br><span class="line">    lost_star=continuous(lost_star,<span class="number">1</span>)</span><br><span class="line">    lost_star=continuous(lost_star,<span class="number">2</span>)</span><br><span class="line">    en = entropy(lost_star,len(lost_star[<span class="number">0</span>])<span class="number">-1</span>)</span><br><span class="line">    <span class="keyword">return</span> attributes,lost_star,en</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_subset</span><span class="params">(lost_star,value,j)</span>:</span><span class="comment">#生成子集 	参数：数据集，属性具体取值,所在列数</span></span><br><span class="line">    subset=[lost_star[i] <span class="keyword">for</span> i <span class="keyword">in</span> range(len(lost_star)) <span class="keyword">if</span> lost_star[i][j]==value]</span><br><span class="line">    <span class="keyword">return</span> subset</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">continuous</span><span class="params">(lost_star,l)</span>:</span><span class="comment">#连续值的阈值 	参数：数据集，连续值所在列数</span></span><br><span class="line">    <span class="comment">#不转float会出现15,7,89这种情况，大概是因为str先比第一位，大概。</span></span><br><span class="line">    gear=sorted(lost_star,key=<span class="keyword">lambda</span> st: float(st[l]))</span><br><span class="line">    <span class="comment">#可能的分割阈值点，!=是因为把取值相同的类分成不同的类没有意义</span></span><br><span class="line"><span class="comment">##    possible=[]</span></span><br><span class="line"><span class="comment">##    for i in range(len(lost_star)):</span></span><br><span class="line"><span class="comment">##        if lost_star[i][-1]!=lost_star[i+1][-1]:</span></span><br><span class="line"><span class="comment">##            possible+=[str((int(lost_star[i][l])+int(lost_star[i+1][l]))/2)]</span></span><br><span class="line"><span class="comment">##            print(possible)</span></span><br><span class="line">    possible=[str((float(gear[i][l])+float(gear[i+<span class="number">1</span>][l]))/<span class="number">2</span>) <span class="keyword">for</span> i <span class="keyword">in</span> range(len(gear)<span class="number">-1</span>) <span class="keyword">if</span> gear[i][<span class="number">-1</span>]!=gear[i+<span class="number">1</span>][<span class="number">-1</span>]]</span><br><span class="line">    scrap=&#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> possible:</span><br><span class="line">        subset1=[gear[i] <span class="keyword">for</span> i <span class="keyword">in</span> range(len(gear)) <span class="keyword">if</span> float(gear[i][l])&lt;float(j)]<span class="comment">#小于该分割点的子集</span></span><br><span class="line">        subset2=[gear[i] <span class="keyword">for</span> i <span class="keyword">in</span> range(len(gear)) <span class="keyword">if</span> float(gear[i][l])&gt;=float(j)]<span class="comment">#大于ry</span></span><br><span class="line">        scrap[j]=len(subset1)/len(lost_star)*entropy(subset1,<span class="number">-1</span>)+len(subset2)/len(lost_star)*entropy(subset2,<span class="number">-1</span>)<span class="comment">#计算不同分割点的熵</span></span><br><span class="line">    threshold=[i <span class="keyword">for</span> i,j <span class="keyword">in</span> scrap.items() <span class="keyword">if</span> j == min(scrap.values())][<span class="number">0</span>]<span class="comment">#阈值，增益和熵成反比所以min</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> lost_star:</span><br><span class="line">        <span class="comment">#解释一下这个学来的操作，大概就相当于['&gt;=','&lt;'][0 or 1]</span></span><br><span class="line">        <span class="comment">#a cool trick, right? :D</span></span><br><span class="line">        i[l]=[<span class="string">'&gt;='</span>,<span class="string">'&lt;'</span>][float(i[l])&gt;=float(threshold)]+threshold</span><br><span class="line">    <span class="keyword">return</span> lost_star</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">entropy</span><span class="params">(lost_star,l)</span>:</span><span class="comment">#计算信息熵  参数：数据集,列数</span></span><br><span class="line">    star=&#123;&#125;</span><br><span class="line">    entropy=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(lost_star)):</span><br><span class="line">        <span class="keyword">if</span> lost_star[i][l] <span class="keyword">not</span> <span class="keyword">in</span> star.keys(): <span class="comment">#一个字典</span></span><br><span class="line">            star[lost_star[i][l]]=<span class="number">0</span>	<span class="comment">#key:value = 结果取值:个数</span></span><br><span class="line">        star[lost_star[i][l]]+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> star.values():</span><br><span class="line">        entropy += -(i/sum(star.values()))*log(i/sum(star.values()),<span class="number">2</span>)<span class="comment">#熵，∑-p*log2(p)</span></span><br><span class="line">    <span class="keyword">return</span> entropy</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gainratio</span><span class="params">(en,e,j,lost_star)</span>:</span><span class="comment">#信息增益率 	参数：结果熵,属性熵,列数,数据集</span></span><br><span class="line">    <span class="keyword">if</span> e == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    entropy_info=<span class="number">0</span> <span class="comment">#属性∑，即∑|Dv|/D * Entropy(playgolf? in Dv)</span></span><br><span class="line">    a_value=set([lost_star[i][j] <span class="keyword">for</span> i <span class="keyword">in</span> range(len(lost_star))])<span class="comment">#属性可能的取值</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> a_value:</span><br><span class="line">        subset=get_subset(lost_star,i,j)<span class="comment">#得到属性取值对应子集</span></span><br><span class="line">        entropy_info += len(subset)/len(lost_star)*entropy(subset,len(subset[<span class="number">0</span>])<span class="number">-1</span>)<span class="comment">#属性∑ = 取值权重*子集熵</span></span><br><span class="line">    <span class="keyword">return</span> (en - entropy_info)/e    <span class="comment">#（结果熵-属性∑）/属性熵 = gainratio</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gotcha</span><span class="params">(lost_star,attributes,en)</span>:</span><span class="comment">#生成树  参数：数据集，属性，结果熵</span></span><br><span class="line">    <span class="keyword">if</span> en == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> lost_star[<span class="number">0</span>][<span class="number">-1</span>]</span><br><span class="line">    <span class="keyword">if</span> len(lost_star[<span class="number">0</span>])==<span class="number">2</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(lost_star)):</span><br><span class="line">            <span class="keyword">if</span> lost_star[i][<span class="number">-1</span>] <span class="keyword">not</span> <span class="keyword">in</span> star:</span><br><span class="line">                star[lost_star[i][<span class="number">-1</span>]]=<span class="number">0</span></span><br><span class="line">            star[lost_star[i][<span class="number">-1</span>]]+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i,j <span class="keyword">in</span> lost_star.items():</span><br><span class="line">            <span class="keyword">if</span> j == max(lost_star.values()):</span><br><span class="line">                <span class="keyword">return</span> i</span><br><span class="line">    <span class="comment">#↑如果结果熵是0（结果唯一）或属性只剩一个</span></span><br><span class="line">    dust=&#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(attributes)):</span><br><span class="line">        dust[attributes[i]]=gainratio(en,entropy(lost_star,i),i,lost_star)<span class="comment">#属性对应信息增益率</span></span><br><span class="line">    <span class="comment">#↓试图压缩行数，写了个智熄操作搞到节点</span></span><br><span class="line">    branch=[i <span class="keyword">for</span> i,j <span class="keyword">in</span> dust.items() <span class="keyword">if</span> j == max(dust.values())][<span class="number">0</span>]</span><br><span class="line">    num=attributes.index(branch)<span class="comment">#得到被选作节点的属性所在列数</span></span><br><span class="line">    <span class="keyword">del</span>(attributes[num])        <span class="comment">#把该属性从属性列表中删除</span></span><br><span class="line">    b_value=set([lost_star[i][num] <span class="keyword">for</span> i <span class="keyword">in</span> range(len(lost_star))])<span class="comment">#被选作节点的属性可能的取值</span></span><br><span class="line">    tree=&#123;branch:&#123;&#125;&#125;</span><br><span class="line">    <span class="comment">#写个循环调get_subset拿到属性不同取值对应的子集然后递归</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> b_value:</span><br><span class="line">        subset=get_subset(lost_star,i,num)</span><br><span class="line">        <span class="keyword">for</span> a <span class="keyword">in</span> range(len(subset)):</span><br><span class="line">            subset[a].remove(subset[a][num])<span class="comment">#去除被选作节点的属性</span></span><br><span class="line">        entro=entropy(subset,len(subset[<span class="number">0</span>])<span class="number">-1</span>)<span class="comment">#子集的结果熵</span></span><br><span class="line">        subattributes = attributes[:]<span class="comment">#化腐朽为神奇.jpg 如果不备份直接传会炸</span></span><br><span class="line">        tree[branch][i]=gotcha(subset,subattributes,entro)<span class="comment">#拿到下一个节点ry</span></span><br><span class="line">    <span class="keyword">return</span> tree</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    path = <span class="string">r'data.txt'</span></span><br><span class="line">    <span class="keyword">with</span> open(path) <span class="keyword">as</span> f:</span><br><span class="line">        data = f.readlines()</span><br><span class="line"></span><br><span class="line">    attributes,lost_star,en = stardust(data)<span class="comment">#拿到属性，具体数据集和结果熵</span></span><br><span class="line">    tree=gotcha(lost_star,attributes,en)</span><br><span class="line">    print(tree)</span><br></pre></td></tr></table></figure>
+<p>图像代码（复制来的）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: cp936 -*-  </span><br><span class="line">import matplotlib.pyplot as plt  </span><br><span class="line">from kadoya import *  #c4.5算法的py文件名</span><br><span class="line">decisionNode = dict(boxstyle = &apos;sawtooth&apos;, fc = &apos;0.8&apos;)  </span><br><span class="line">leafNode = dict(boxstyle = &apos;round4&apos;, fc = &apos;0.8&apos;)  </span><br><span class="line">arrow_args = dict(arrowstyle = &apos;&lt;-&apos;)  </span><br><span class="line">  </span><br><span class="line">def plotNode(nodeTxt, centerPt, parentPt, nodeType):  </span><br><span class="line">    createPlot.ax1.annotate(nodeTxt, xy = parentPt, xycoords = &apos;axes fraction&apos;,xytext = centerPt, textcoords = &apos;axes fraction&apos;,va = &apos;center&apos;, ha = &apos;center&apos;, bbox = nodeType, arrowprops = arrow_args)  </span><br><span class="line">  </span><br><span class="line"># 使用文本注解绘制树节点  </span><br><span class="line">def createPlot():  </span><br><span class="line">    fig = plt.figure(1, facecolor = &apos;white&apos;)  </span><br><span class="line">    fig.clf()  </span><br><span class="line">    createPlot.ax1 = plt.subplot(111, frameon = False)  </span><br><span class="line">    plotNode(&apos;a decision node&apos;, (0.5,0.1), (0.1,0.5), decisionNode)  </span><br><span class="line">    plotNode(&apos;a leaf node&apos;, (0.8, 0.1), (0.3,0.8), leafNode)  </span><br><span class="line">    plt.show()  </span><br><span class="line">  </span><br><span class="line">#获取叶子节点数目和树的层数  </span><br><span class="line">def getNumLeafs(myTree):  </span><br><span class="line">    numLeafs = 0  </span><br><span class="line">    #firstStr = myTree.keys()[0]</span><br><span class="line">    firstSides = list(myTree.keys())</span><br><span class="line">    firstStr = firstSides[0]</span><br><span class="line">    secondDict = myTree[firstStr]  </span><br><span class="line">    for key in secondDict.keys():  </span><br><span class="line">        if(type(secondDict[key]).__name__ == &apos;dict&apos;):  </span><br><span class="line">            numLeafs += getNumLeafs(secondDict[key])  </span><br><span class="line">        else: numLeafs += 1  </span><br><span class="line">    return numLeafs  </span><br><span class="line">  </span><br><span class="line">def getTreeDepth(myTree):  </span><br><span class="line">    maxDepth = 0  </span><br><span class="line">    #firstStr = myTree.keys()[0]</span><br><span class="line">    firstSides = list(myTree.keys())</span><br><span class="line">    firstStr = firstSides[0]</span><br><span class="line">    secondDict = myTree[firstStr]  </span><br><span class="line">    for key in secondDict.keys():  </span><br><span class="line">        if(type(secondDict[key]).__name__ == &apos;dict&apos;):  </span><br><span class="line">            thisDepth = 1+ getTreeDepth(secondDict[key])  </span><br><span class="line">        else: thisDepth = 1  </span><br><span class="line">        if thisDepth &gt; maxDepth: maxDepth = thisDepth  </span><br><span class="line">    return maxDepth  </span><br><span class="line">  </span><br><span class="line">#更新createPlot代码以得到整棵树  </span><br><span class="line">def plotMidText(cntrPt, parentPt, txtString):  </span><br><span class="line">    xMid = (parentPt[0]-cntrPt[0])/2.0 + cntrPt[0]  </span><br><span class="line">    yMid = (parentPt[1]-cntrPt[1])/2.0 + cntrPt[1]  </span><br><span class="line">    createPlot.ax1.text(xMid, yMid, txtString, va=&quot;center&quot;, ha=&quot;center&quot;, rotation=30)  </span><br><span class="line">  </span><br><span class="line">def plotTree(myTree, parentPt, nodeTxt):#if the first key tells you what feat was split on  </span><br><span class="line">    numLeafs = getNumLeafs(myTree)  #this determines the x width of this tree  </span><br><span class="line">    depth = getTreeDepth(myTree)  </span><br><span class="line">    #firstStr = myTree.keys()[0]     #the text label for this node should be this</span><br><span class="line">    firstSides = list(myTree.keys())</span><br><span class="line">    firstStr = firstSides[0]</span><br><span class="line">    cntrPt = (plotTree.xOff + (1.0 + float(numLeafs))/2.0/plotTree.totalW, plotTree.yOff)  </span><br><span class="line">    plotMidText(cntrPt, parentPt, nodeTxt)  </span><br><span class="line">    plotNode(firstStr, cntrPt, parentPt, decisionNode)  </span><br><span class="line">    secondDict = myTree[firstStr]  </span><br><span class="line">    plotTree.yOff = plotTree.yOff - 1.0/plotTree.totalD  </span><br><span class="line">    for key in secondDict.keys():  </span><br><span class="line">        if type(secondDict[key]).__name__==&apos;dict&apos;:#test to see if the nodes are dictonaires, if not they are leaf nodes     </span><br><span class="line">            plotTree(secondDict[key],cntrPt,str(key))        #recursion  </span><br><span class="line">        else:   #it&apos;s a leaf node print the leaf node  </span><br><span class="line">            plotTree.xOff = plotTree.xOff + 1.0/plotTree.totalW  </span><br><span class="line">            plotNode(secondDict[key], (plotTree.xOff, plotTree.yOff), cntrPt, leafNode)  </span><br><span class="line">            plotMidText((plotTree.xOff, plotTree.yOff), cntrPt, str(key))  </span><br><span class="line">    plotTree.yOff = plotTree.yOff + 1.0/plotTree.totalD  </span><br><span class="line">#if you do get a dictonary you know it&apos;s a tree, and the first element will be another dict  </span><br><span class="line">  </span><br><span class="line">def createPlot(inTree):  </span><br><span class="line">    fig = plt.figure(1, facecolor=&apos;white&apos;)  </span><br><span class="line">    fig.clf()  </span><br><span class="line">    axprops = dict(xticks=[], yticks=[])  </span><br><span class="line">    createPlot.ax1 = plt.subplot(111, frameon=False, **axprops)    #no ticks  </span><br><span class="line">    #createPlot.ax1 = plt.subplot(111, frameon=False) #ticks for demo puropses   </span><br><span class="line">    plotTree.totalW = float(getNumLeafs(inTree))  </span><br><span class="line">    plotTree.totalD = float(getTreeDepth(inTree))  </span><br><span class="line">    plotTree.xOff = -0.5/plotTree.totalW; plotTree.yOff = 1.0;  </span><br><span class="line">    plotTree(inTree, (0.5,1.0), &apos;&apos;)  </span><br><span class="line">    plt.show() </span><br><span class="line"></span><br><span class="line">path = r&apos;data.txt&apos;</span><br><span class="line">with open(path) as f:</span><br><span class="line">    data = f.readlines()</span><br><span class="line">attributes,lost_star,en = stardust(data)#拿到具体数据集和结果熵</span><br><span class="line">tree=gotcha(lost_star,attributes,en)</span><br><span class="line">print(tree)</span><br><span class="line">createPlot(tree)</span><br></pre></td></tr></table></figure></p>
+
+      
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/03/29/仓库：C4-5的python实现/">C4.5的python实现</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 ylylhl 的个人博客">ylylhl</a></p>
+        <p><span>发布时间:</span>2018年03月29日 - 21时54分</p>
+        <p><span>最后更新:</span>2019年03月29日 - 14时40分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/03/29/仓库：C4-5的python实现/" title="C4.5的python实现">http://yoursite.com/2018/03/29/仓库：C4-5的python实现/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/03/29/仓库：C4-5的python实现/　　作者: ylylhl" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target="_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2019/03/15/XSS简述&入门/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          XSS学习笔记
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2019/03/15/XSS简述&入门/" title="上一篇: XSS学习笔记">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/03/28/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/XSS简述&入门/">XSS学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/29/仓库：C4-5的python实现/">C4.5的python实现</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 ylylhl
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-" + backgroundnum +".jpg)";
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+    <script type="text/javascript">
+      window.onload = function(){
+        document.getElementById("search").onclick = function(){
+            console.log("search")
+            search();
+        }
+      }
+      function search(){
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+        (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+        e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','A1Pz-LKMXbrzcFg2FWi6','2.0.0');
+      }
+    </script>
+
+  </div>
+</body>
+</html>
