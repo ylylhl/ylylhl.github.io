@@ -33,7 +33,7 @@
 <meta property="og:image" content="javascript:alert(0);">
 <meta property="og:image" content="javascript:alert(0);">
 <meta property="og:image" content="javascript:alert(0);">
-<meta property="og:updated_time" content="2019-03-29T07:17:59.336Z">
+<meta property="og:updated_time" content="2019-03-29T07:26:20.600Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XSS学习笔记">
 <meta name="twitter:description" content="本学期课程的阶段性总结">
@@ -385,8 +385,9 @@
 <h4 id="对标签属性值进行转码"><a href="#对标签属性值进行转码" class="headerlink" title="对标签属性值进行转码"></a>对标签属性值进行转码</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@ 将字符转为十进制或十六进制，例如</span><br><span class="line">a    <span class="number">97</span>     &amp;<span class="comment">#97;     &amp;#x61;   </span></span><br><span class="line">e    <span class="number">101</span>    &amp;<span class="comment">#101;    &amp;#x65;</span></span><br><span class="line">&lt;A hREf=<span class="string">"j    &amp;#97;v&amp;#x61;script:alert(/xss/)"</span>&gt;click me!&lt;/a&gt;</span><br></pre></td></tr></table></figure>
 <h4 id="拆分跨站"><a href="#拆分跨站" class="headerlink" title="拆分跨站"></a>拆分跨站</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@ 拼接</span><br><span class="line">&lt;script&gt;z=&apos;alert&apos;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;z=z+&apos;(/xss/)&apos;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;eval(z)&lt;/script&gt;</span><br><span class="line">@ 注释</span><br><span class="line">&lt;script&gt;alert(doucument./*</span><br><span class="line">*/cookie&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 <h2 id="常见应对XSS方法"><a href="#常见应对XSS方法" class="headerlink" title="常见应对XSS方法"></a>常见应对XSS方法</h2><ul>
-<li><p>输入输出检查并对敏感字符编码，如<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- 在XSS的防御上，输入检查一般是检查用户输入的数据中是否包含一些特殊字符，如```&lt;script&gt;```、```JavaScript```、```&lt;```、```&gt;```、```”```。常使用```preg_replace()```函数，如```preg_replace( &apos;/&lt;(.*)s(.*)c(.*)r(.*)i(.*)p(.*)t/i&apos;, &apos;&apos;, $name );</span><br></pre></td></tr></table></figure></p>
+<li><p>输入输出检查并对敏感字符编码，如<code>&lt;</code>转成<code>&amp;lt;</code></p>
 <ul>
+<li>在XSS的防御上，输入检查一般是检查用户输入的数据中是否包含一些特殊字符，如<code>&lt;script&gt;</code>、<code>JavaScript</code>、<code>&lt;</code>、<code>&gt;</code>、<code>”</code>。常使用<code>preg_replace()</code>函数，如<code>preg_replace( &#39;/&lt;(.*)s(.*)c(.*)r(.*)i(.*)p(.*)t/i&#39;, &#39;&#39;, $name );</code></li>
 <li>在变量输出到HTML页面时，可以使用编码或转义的方式来防御XSS攻击。如php可以使用<code>htmlentities()</code>函数及<code>htmlspecialchars()</code>函数；JavascriptEncode使用<code>escapeJavascript()</code>函数来转义<code>、&lt;&gt;\&amp;#</code>等，同时要求输出变量必须在引号内部。在Java中也存在第三方组件支持过滤XSS漏洞，如JSOUP、OWASP Esapi、xssprotext等。</li>
 </ul>
 </li>
@@ -431,7 +432,7 @@
         <p><span>本文标题:</span><a href="/2019/03/15/XSS简述&入门/">XSS学习笔记</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 ylylhl 的个人博客">ylylhl</a></p>
         <p><span>发布时间:</span>2019年03月15日 - 17时58分</p>
-        <p><span>最后更新:</span>2019年03月29日 - 15时17分</p>
+        <p><span>最后更新:</span>2019年03月29日 - 15时26分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/03/15/XSS简述&入门/" title="XSS学习笔记">http://yoursite.com/2019/03/15/XSS简述&amp;入门/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/03/15/XSS简述&amp;入门/　　作者: ylylhl" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
