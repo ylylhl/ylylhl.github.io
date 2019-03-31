@@ -3,14 +3,15 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>ylylhl&#39;s blog</title>
+  <title>恶意代码分析实战lab01-2/3/4 | ylylhl&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Lab_01_2在线反病毒扫描在www.virustotal.com的扫描结果中，大部分引擎将该文件识别为恶意程序。  此外，在Behavior选项卡下可以看到，该程序将会创建一个名为Malservice的服务和名为HGL345的互斥体。 PEiD由PEiD分析可知加了UPX壳。  upx源代码已由upx.sourceforge.net搬至github，下载工具，脱壳得到lab-01-02-new">
+  <meta name="description" content="堆一下实验报告">
+<meta name="keywords" content="逆向">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ylylhl&#39;s blog">
+<meta property="og:title" content="恶意代码分析实战lab01-2&#x2F;3&#x2F;4">
 <meta property="og:url" content="http://ylylhl.github.io/2019/03/31/恶意代码lab01/index.html">
 <meta property="og:site_name" content="ylylhl&#39;s blog">
-<meta property="og:description" content="Lab_01_2在线反病毒扫描在www.virustotal.com的扫描结果中，大部分引擎将该文件识别为恶意程序。  此外，在Behavior选项卡下可以看到，该程序将会创建一个名为Malservice的服务和名为HGL345的互斥体。 PEiD由PEiD分析可知加了UPX壳。  upx源代码已由upx.sourceforge.net搬至github，下载工具，脱壳得到lab-01-02-new">
+<meta property="og:description" content="堆一下实验报告">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-0b03b4a72e99b40a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-1137ae4573b0448c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -44,10 +45,10 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-637106054d6f172d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-a2002343d7abea0c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-c39496eeb792a309.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-03-31T03:32:51.911Z">
+<meta property="og:updated_time" content="2019-03-31T03:38:03.192Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ylylhl&#39;s blog">
-<meta name="twitter:description" content="Lab_01_2在线反病毒扫描在www.virustotal.com的扫描结果中，大部分引擎将该文件识别为恶意程序。  此外，在Behavior选项卡下可以看到，该程序将会创建一个名为Malservice的服务和名为HGL345的互斥体。 PEiD由PEiD分析可知加了UPX壳。  upx源代码已由upx.sourceforge.net搬至github，下载工具，脱壳得到lab-01-02-new">
+<meta name="twitter:title" content="恶意代码分析实战lab01-2&#x2F;3&#x2F;4">
+<meta name="twitter:description" content="堆一下实验报告">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/10480445-0b03b4a72e99b40a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
   
@@ -174,7 +175,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a>
+                        <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/逆向/" style="font-size: 10px;">逆向</a>
                     </div>
                 </section>
                 
@@ -250,7 +251,7 @@
   
     <div class="article-meta">
       <a href="/2019/03/31/恶意代码lab01/" class="article-date">
-      <time datetime="2019-03-31T03:33:19.942Z" itemprop="datePublished">2019-03-31</time>
+      <time datetime="2019-03-31T03:37:00.000Z" itemprop="datePublished">2019-03-31</time>
 </a>
     </div>
   
@@ -259,10 +260,38 @@
       <input type="hidden" class="isFancy">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      恶意代码分析实战lab01-2/3/4
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/杂物堆积/">杂物堆积</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="Lab-01-2"><a href="#Lab-01-2" class="headerlink" title="Lab_01_2"></a>Lab_01_2</h3><h4 id="在线反病毒扫描"><a href="#在线反病毒扫描" class="headerlink" title="在线反病毒扫描"></a>在线反病毒扫描</h4><p>在<a href="http://www.virustotal.com的扫描结果中，大部分引擎将该文件识别为恶意程序。" target="_blank" rel="noopener">www.virustotal.com的扫描结果中，大部分引擎将该文件识别为恶意程序。</a></p>
+        <p><excerpt in index | 首页摘要><br>堆一下实验报告<br><a id="more"></a></excerpt></p>
+<p><the rest of contents | 余下全文></the></p>
+<h3 id="Lab-01-2"><a href="#Lab-01-2" class="headerlink" title="Lab_01_2"></a>Lab_01_2</h3><h4 id="在线反病毒扫描"><a href="#在线反病毒扫描" class="headerlink" title="在线反病毒扫描"></a>在线反病毒扫描</h4><p>在<a href="http://www.virustotal.com的扫描结果中，大部分引擎将该文件识别为恶意程序。" target="_blank" rel="noopener">www.virustotal.com的扫描结果中，大部分引擎将该文件识别为恶意程序。</a></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/10480445-0b03b4a72e99b40a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
 <p>此外，在Behavior选项卡下可以看到，该程序将会创建一个名为Malservice的服务和名为HGL345的互斥体。</p>
 <h4 id="PEiD"><a href="#PEiD" class="headerlink" title="PEiD"></a>PEiD</h4><p>由PEiD分析可知加了UPX壳。</p>
@@ -432,12 +461,12 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/03/31/恶意代码lab01/"></a></p>
+        <p><span>本文标题:</span><a href="/2019/03/31/恶意代码lab01/">恶意代码分析实战lab01-2/3/4</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 ylylhl 的个人博客">ylylhl</a></p>
-        <p><span>发布时间:</span>2019年03月31日 - 11时33分</p>
-        <p><span>最后更新:</span>2019年03月31日 - 11时32分</p>
+        <p><span>发布时间:</span>2019年03月31日 - 11时37分</p>
+        <p><span>最后更新:</span>2019年03月31日 - 11时38分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/03/31/恶意代码lab01/" title>http://ylylhl.github.io/2019/03/31/恶意代码lab01/</a>
+            <span>原始链接:</span><a class="post-url" href="/2019/03/31/恶意代码lab01/" title="恶意代码分析实战lab01-2/3/4">http://ylylhl.github.io/2019/03/31/恶意代码lab01/</a>
             <span class="copy-path" data-clipboard-text="原文: http://ylylhl.github.io/2019/03/31/恶意代码lab01/　　作者: ylylhl" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
@@ -512,7 +541,7 @@
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/03/31/恶意代码lab01/">恶意代码lab01</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/XSS简述&入门/">XSS学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/13/仓库：K-Means的python实现/">K-means的python实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/29/仓库：C4-5的python实现/">C4.5的python实现</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/03/31/恶意代码lab01/">恶意代码分析实战lab01-2/3/4</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/XSS简述&入门/">XSS学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/13/仓库：K-Means的python实现/">K-means的python实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/29/仓库：C4-5的python实现/">C4.5的python实现</a></li></ul>
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");
