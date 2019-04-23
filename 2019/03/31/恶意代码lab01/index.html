@@ -45,7 +45,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-637106054d6f172d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-a2002343d7abea0c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-c39496eeb792a309.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-03-31T03:42:38.194Z">
+<meta property="og:updated_time" content="2019-04-10T08:34:47.065Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="恶意代码分析实战lab01-2&#x2F;3&#x2F;4">
 <meta name="twitter:description" content="堆一下实验报告">
@@ -175,7 +175,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/逆向/" style="font-size: 10px;">逆向</a>
+                        <a href="/tags/Android逆向/" style="font-size: 10px;">Android逆向</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/逆向/" style="font-size: 10px;">逆向</a>
                     </div>
                 </section>
                 
@@ -184,7 +184,7 @@
                 <section class="switch-part switch-part3">
                     <div id="js-friends">
                     
-                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://obolu.github.io/">obolu</a>
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://obolu.github.io/">obolu的小博客</a>
                     
                     </div>
                 </section>
@@ -338,7 +338,7 @@
 <p>其中<code>InternetOpenA()</code>和<code>InternetOpenUrlA()</code>的参数分别如下：</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/10480445-e028ad275d42ebdd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
 <h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><p>综合上述分析，可以得知该恶意程序的目的是创建一个名为Malservice的服务，并在2100年时创建20个线程，使用IE浏览器打开指定网址，推测编写者想要集中在同一时间对该网站进行DDoS攻击。</p>
-<h3 id="Lab-01-3"><a href="#Lab-01-3" class="headerlink" title="Lab_01_3"></a>Lab_01_3</h3><h4 id="在线反病毒扫描-1"><a href="#在线反病毒扫描-1" class="headerlink" title="在线反病毒扫描"></a>在线反病毒扫描</h4><p>在<a href="http://www.virustotal.com的扫描结果中，绝大部分引擎将该文件识别为恶意程序。" target="_blank" rel="noopener">www.virustotal.com的扫描结果中，绝大部分引擎将该文件识别为恶意程序。</a></p>
+<h3 id="Lab-01-3"><a href="#Lab-01-3" class="headerlink" title="Lab_01_3"></a>Lab_01_3</h3><h4 id="在线反病毒扫描-1"><a href="#在线反病毒扫描-1" class="headerlink" title="在线反病毒扫描"></a>在线反病毒扫描</h4><p>在<a href="www.virustotal.com">www.virustotal.com</a>的扫描结果中，绝大部分引擎将该文件识别为恶意程序。</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/10480445-f4f9118a56c937f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
 <p>此外，在Behavior选项卡下可以看到，该程序将会向特定网址发出请求，并和两个未知IP间产生网络流量。它还会打开、写入、删除一些文件；打开并设置部分注册表项；创建一些进程；输入shell命令等，不再逐一截图。</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/10480445-806fdbb648897cec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
@@ -370,7 +370,7 @@
 </ul>
 <h4 id="IDA-1"><a href="#IDA-1" class="headerlink" title="IDA"></a>IDA</h4><p>打开lab01-03-new.exe，F5反汇编，截取部分代码如下<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( OleInitialize(<span class="number">0</span>) &gt;= <span class="number">0</span> )</span><br><span class="line">&#123;</span><br><span class="line">  CoCreateInstance(&amp;rclsid, <span class="number">0</span>, <span class="number">4u</span>, &amp;riid, &amp;ppv);</span><br><span class="line">  <span class="keyword">if</span> ( ppv )</span><br><span class="line">  &#123;</span><br><span class="line">    VariantInit(&amp;pvarg);</span><br><span class="line">    v7 = <span class="number">3</span>;</span><br><span class="line">    v8 = <span class="number">1</span>;</span><br><span class="line">    v3 = SysAllocString(<span class="string">L"http://www.malwareanalysisbook.com/ad.html"</span>);</span><br><span class="line">    (*(<span class="keyword">void</span> (__stdcall **)(LPVOID, OLECHAR *, __int16 *, VARIANTARG *, VARIANTARG *, VARIANTARG *))(*(_DWORD *)ppv + <span class="number">44</span>))(</span><br><span class="line">      ppv,</span><br><span class="line">      v3,</span><br><span class="line">      &amp;v7,</span><br><span class="line">      &amp;pvarg,</span><br><span class="line">      &amp;pvarg,</span><br><span class="line">      &amp;pvarg);</span><br><span class="line">    SysFreeString(v3);</span><br><span class="line">  &#125;</span><br><span class="line">  OleUninitialize();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h4 id="结论-1"><a href="#结论-1" class="headerlink" title="结论"></a>结论</h4><p>综合上述分析，可以得知该程序的主要目的是打开特定网址，该网址可能含有恶意代码。</p>
-<h3 id="Lab-01-4"><a href="#Lab-01-4" class="headerlink" title="Lab_01_4"></a>Lab_01_4</h3><h4 id="在线反病毒扫描-2"><a href="#在线反病毒扫描-2" class="headerlink" title="在线反病毒扫描"></a>在线反病毒扫描</h4><p>在<a href="http://www.virustotal.com的扫描结果中，大部分引擎将该文件识别为恶意程序。" target="_blank" rel="noopener">www.virustotal.com的扫描结果中，大部分引擎将该文件识别为恶意程序。</a></p>
+<h3 id="Lab-01-4"><a href="#Lab-01-4" class="headerlink" title="Lab_01_4"></a>Lab_01_4</h3><h4 id="在线反病毒扫描-2"><a href="#在线反病毒扫描-2" class="headerlink" title="在线反病毒扫描"></a>在线反病毒扫描</h4><p>在<a href="www.virustotal.com">www.virustotal.com</a>的扫描结果中，大部分引擎将该文件识别为恶意程序。</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/10480445-71bca6e7692fd9d3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
 <p>此外，在Behavior选项卡下可以看到，该程序将会请求特定网址，与未知IP建立TCP连接；移动wupdmgr.exe并写入；运行wupdmgr.exe以创建进程；开启服务等，不再逐一截图。</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/10480445-e33a1c3920684a6a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
@@ -464,7 +464,7 @@
         <p><span>本文标题:</span><a href="/2019/03/31/恶意代码lab01/">恶意代码分析实战lab01-2/3/4</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 ylylhl 的个人博客">ylylhl</a></p>
         <p><span>发布时间:</span>2019年03月31日 - 11时37分</p>
-        <p><span>最后更新:</span>2019年03月31日 - 11时42分</p>
+        <p><span>最后更新:</span>2019年04月10日 - 16时34分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/03/31/恶意代码lab01/" title="恶意代码分析实战lab01-2/3/4">http://ylylhl.github.io/2019/03/31/恶意代码lab01/</a>
             <span class="copy-path" data-clipboard-text="原文: http://ylylhl.github.io/2019/03/31/恶意代码lab01/　　作者: ylylhl" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -479,6 +479,15 @@
 
 
 <nav id="article-nav">
+  
+    <a href="/2019/04/22/ライダーあつめ反编译过程/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          《ライダーあつめ》反编译过程
+        
+      </div>
+    </a>
   
   
     <a href="/2019/03/15/XSS简述&入门/" id="article-nav-older" class="article-nav-link-wrap">
@@ -532,7 +541,9 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2019/04/22/ライダーあつめ反编译过程/" title="上一篇: 《ライダーあつめ》反编译过程">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
@@ -541,7 +552,7 @@
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/03/31/恶意代码lab01/">恶意代码分析实战lab01-2/3/4</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/XSS简述&入门/">XSS学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/13/仓库：K-Means的python实现/">K-means的python实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/29/仓库：C4-5的python实现/">C4.5的python实现</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/04/22/ライダーあつめ反编译过程/">《ライダーあつめ》反编译过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/31/恶意代码lab01/">恶意代码分析实战lab01-2/3/4</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/XSS简述&入门/">XSS学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/13/仓库：K-Means的python实现/">K-means的python实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/29/仓库：C4-5的python实现/">C4.5的python实现</a></li></ul>
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");

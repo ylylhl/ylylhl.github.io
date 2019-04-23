@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>《ライダーあつめ》反编译过程 | ylylhl&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="《ライダーあつめ/假面骑士收集》反编译/汉化过程">
+<meta name="keywords" content="Android逆向">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《ライダーあつめ》反编译过程">
+<meta property="og:url" content="http://ylylhl.github.io/2019/04/22/ライダーあつめ反编译过程/index.html">
+<meta property="og:site_name" content="ylylhl&#39;s blog">
+<meta property="og:description" content="《ライダーあつめ/假面骑士收集》反编译/汉化过程">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ylylhl.github.io/2019/04/22/ライダーあつめ反编译过程/1555940635748.png">
+<meta property="og:image" content="http://ylylhl.github.io/2019/04/22/ライダーあつめ反编译过程/1555941909536.png">
+<meta property="og:image" content="http://ylylhl.github.io/2019/04/22/ライダーあつめ反编译过程/1555942326673.png">
+<meta property="og:image" content="http://ylylhl.github.io/2019/04/22/ライダーあつめ反编译过程/1555942228596.png">
+<meta property="og:image" content="http://ylylhl.github.io/2019/04/22/ライダーあつめ反编译过程/1556011296006.png">
+<meta property="og:image" content="http://ylylhl.github.io/2019/04/22/ライダーあつめ反编译过程/1555942554963.png">
+<meta property="og:image" content="http://ylylhl.github.io/2019/04/22/ライダーあつめ反编译过程/1555944290365.png">
+<meta property="og:image" content="http://ylylhl.github.io/2019/04/22/ライダーあつめ反编译过程/1555944951267.png">
+<meta property="og:image" content="http://ylylhl.github.io/2019/04/22/ライダーあつめ反编译过程/1556014011664.png">
+<meta property="og:image" content="http://ylylhl.github.io/2019/04/22/ライダーあつめ反编译过程/1556014219923.png">
+<meta property="og:image" content="http://ylylhl.github.io/2019/04/22/ライダーあつめ反编译过程/1556016075513.png">
+<meta property="og:updated_time" content="2019-04-23T11:35:56.222Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《ライダーあつめ》反编译过程">
+<meta name="twitter:description" content="《ライダーあつめ/假面骑士收集》反编译/汉化过程">
+<meta name="twitter:image" content="http://ylylhl.github.io/2019/04/22/ライダーあつめ反编译过程/1555940635748.png">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: false,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img src="/img/head.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title>ylylhl</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">明日のメダルと掴む腕</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="search" placeholder=" Search...">
+            </form>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">-首页-</a></li>
+                        
+                            <li><a href="/archives">-归档-</a></li>
+                        
+                            <li><a href="/about">-关于-</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=laKtpKWmpaKspdXk5Lv2_vg" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/ylylhl" title="github">github</a>
+                            
+                                <a class="fl weibo" target="_blank" href="https://weibo.com/u/5655801541" title="weibo">weibo</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Android逆向/" style="font-size: 10px;">Android逆向</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/逆向/" style="font-size: 10px;">逆向</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://obolu.github.io/">obolu的小博客</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">日常摸鱼，长期搬砖，ygo娱乐玩家，来打只看不产，布鲁游天下第一。</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">ylylhl</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img src="/img/head.png" class="js-avatar" style="width: 100%; height: 100%; opacity: 1;">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">ylylhl</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">明日のメダルと掴む腕</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">-首页-</a></li>
+                
+                    <li><a href="/archives">-归档-</a></li>
+                
+                    <li><a href="/about">-关于-</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=laKtpKWmpaKspdXk5Lv2_vg" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/ylylhl" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="https://weibo.com/u/5655801541" title="weibo">weibo</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-ライダーあつめ反编译过程" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/22/ライダーあつめ反编译过程/" class="article-date">
+      <time datetime="2019-04-22T12:45:28.000Z" itemprop="datePublished">2019-04-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      《ライダーあつめ》反编译过程
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/杂物堆积/">杂物堆积</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android逆向/">Android逆向</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in index | 首页摘要><br>《ライダーあつめ/假面骑士收集》反编译/汉化过程<br><a id="more"></a></excerpt></p>
+<the rest of contents | 余下全文>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>大约是今年一月中旬吧，期末复习到过饱和状态，神游太虚的时候突然想起了次卡萨，结果刷小明刷了四个月（……）没有人会不喜欢井上正大.jpg</p>
+<p>最近搜了下假面骑士的手游，安装了ライダーあつめ，三天过去了小明还是不见踪影，按照攻略摆了紫色的心和黑色的马倒是引来了一堆kaixa（……）正好友人吐槽看不懂日语，于是怒而拆包（。</p>
+<p>这之前没做过手游汉化的工作，一切分析均基于以前打ctf时少得可怜的经验，如有错误或有更简便的办法/工具，欢迎批评指正。</p>
+<h2 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h2><p>与PC程序反编译时经典的IDA&amp;Ollydbg两件套不同，对Android平台程序的反编译通常采用以下三件套：</p>
+<ul>
+<li><a href="https://ibotpeaches.github.io/Apktool/install/" target="_blank" rel="noopener">apktool</a></li>
+<li><a href="https://sourceforge.net/projects/dex2jar/" target="_blank" rel="noopener">dex2jar</a></li>
+<li><a href="https://java-decompiler.github.io/" target="_blank" rel="noopener">jd-gui</a></li>
+</ul>
+<p>其中，apktool用于反编译，dex2jar需要和jd-gui结合使用，用于查看项目的java源码。</p>
+<h2 id="分析过程"><a href="#分析过程" class="headerlink" title="分析过程"></a>分析过程</h2><h3 id="apk文件结构"><a href="#apk文件结构" class="headerlink" title="apk文件结构"></a>apk文件结构</h3><p>将apk后缀改为zip即可解压 ，得到如下文件。</p>
+<p><img src="/2019/04/22/ライダーあつめ反编译过程/1555940635748.png" alt="1555940635748"></p>
+<p>其中<code>META-INF</code>文件夹主要存放apk的签名哈希证书之类的，我们不用管它，重点在<code>lib</code>和<code>res</code>文件夹，以及<code>classes.dex</code>文件。lib文件夹负责存放<code>.so</code>文件，res文件夹负责存放引用的资源，classes.dex则是编译过后的项目源码。</p>
+<p>由于Hit-Point社一贯的新手友好（……）so文件没什么用，省去了很多麻烦。</p>
+<p>感谢error404师傅的友情陪聊（……）</p>
+<blockquote>
+<p>小蓝 || 灰羽 17:56:01<br>so文件看了吗？<br>花燈の恋文 17:56:18<br>。还没<br>花燈の恋文 17:56:24<br>看名字感觉不像就没看（……）<br>小蓝 || 灰羽 17:59:58<br>我觉得可能在so里<br>花燈の恋文 18:00:52<br>刚秒速看了一眼，感觉没有（<br>花燈の恋文 18:42:35<br>说实话我觉得它……没理由对文本加密啊（）<br>花燈の恋文 18:42:42<br>程序都没加壳也没做混淆（）<br>小蓝 || 灰羽 18:42:55<br>有可能动态生成啊<br>小蓝 || 灰羽 18:43:06<br>所以我才怀疑so<br>花燈の恋文 19:15:28<br>草<br>花燈の恋文 19:15:33<br>好像是utf8<br>花燈の恋文 19:15:38<br>不好意思<br>花燈の恋文 19:15:42<br>真的不好意思（…………）</p>
+</blockquote>
+<h3 id="反编译-系统部分汉化"><a href="#反编译-系统部分汉化" class="headerlink" title="反编译/系统部分汉化"></a>反编译/系统部分汉化</h3><p>将解压后得到的classes.dex复制到dex2jar文件夹下，打开cmd，执行命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d2j-dex2jar.bat classes.dex</span><br></pre></td></tr></table></figure>
+<p>得到反编译后的<code>classes-dex2jar.jar</code>文件。</p>
+<p><img src="/2019/04/22/ライダーあつめ反编译过程/1555941909536.png" alt="1555941909536"></p>
+<p>用jd-gui打开该文件，即可看到反编译后的代码。</p>
+<p><img src="/2019/04/22/ライダーあつめ反编译过程/1555942326673.png" alt="1555942326673"></p>
+<p>搜索字符串得知命名为”s”的文件中存在游戏中的提示文字，如商店购买提示、暗号说明等。</p>
+<p><img src="/2019/04/22/ライダーあつめ反编译过程/1555942228596.png" alt="1555942228596"></p>
+<p>在存放apktool的文件夹下打开cmd，执行命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apktool d ライダーあつめ.apk</span><br></pre></td></tr></table></figure>
+<p>得到反编译后的文件，<code>\smali\rideratsume\toei</code>文件夹下的s.smali文件即是s.class对应的文件，打开后与jd-gui中的源码对照着，将汉化文本转为unicode并替换原文本即可。举例如下：</p>
+<blockquote>
+<p>が足りません -&gt; \u304c\u8db3\u308a\u307e\u305b\u3093<br>搜索并定位至\u304c\u8db3\u308a\u307e\u305b\u3093字符串<br>不足 -&gt; \u4e0d\u8db3<br>将原文本替换为\u4e0d\u8db3</p>
+</blockquote>
+<p>实际运行时效果如下图：</p>
+<p><img src="/2019/04/22/ライダーあつめ反编译过程/1556011296006.png" alt="1556011296006"></p>
+<p>至此，游戏的系统文本部分可以汉化完成。</p>
+<p>多提一句，商店部分中和购买相关的源码如下：</p>
+<p><img src="/2019/04/22/ライダーあつめ反编译过程/1555942554963.png" alt="1555942554963"></p>
+<p>可以看出首先对所持らいだま数量进行了判断，如果不够则提示数量不足，足够的话则把らいだま的数量减少。</p>
+<p><del>在这里可以搞事情</del></p>
+<h3 id="提取资源-图鉴部分汉化"><a href="#提取资源-图鉴部分汉化" class="headerlink" title="提取资源/图鉴部分汉化"></a>提取资源/图鉴部分汉化</h3><p><code>res\drawable-nodpi</code>文件夹下存放了大部分图像、声音资源及图鉴文字，其中<code>evt00_data.evt</code>为文字资源。</p>
+<p>由于日语编码原因文字可能会乱码，用notepad++等支持转码的编辑器打开，选择utf-8编码即可看到原始文档，至此可以完成图鉴部分（商店物品/骑士/登场台词/怪人）的文字汉化工作。</p>
+<p>私心截个dcd组=D</p>
+<p><img src="/2019/04/22/ライダーあつめ反编译过程/1555944290365.png" alt="1555944290365"></p>
+<p>同一文件夹下的img_xx_00.bin等为图像资源，构造提取脚本如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">●Get Img v1.0</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Author: Yemu</span></span><br><span class="line"><span class="string">Create date: 19.4.22</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">从bin文件里分割png图片</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_dir_list</span><span class="params">(path)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> [bin_path+i <span class="keyword">for</span> i <span class="keyword">in</span> os.listdir(path)]</span><br><span class="line"></span><br><span class="line">bin_path=<span class="string">'./bin/'</span></span><br><span class="line">all_files=get_dir_list(bin_path)</span><br><span class="line">print(all_files)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> b <span class="keyword">in</span> all_files:</span><br><span class="line">    os.makedirs(<span class="string">'./img/'</span>+b[<span class="number">6</span>:<span class="number">-4</span>]+<span class="string">'/'</span>)</span><br><span class="line">    f=open(b,<span class="string">'rb'</span>)</span><br><span class="line">    file=f.read()</span><br><span class="line">    f.close()</span><br><span class="line">    pnglist=re.findall(<span class="string">b'\x89\x50\x4e\x47\x0d\x0a\x1a\x0a(.*?)\x49\x45\x4e\x44\xae\x42\x60\x82'</span>,file,re.S)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(pnglist)):</span><br><span class="line">        a=<span class="string">b'\x89\x50\x4e\x47\x0d\x0a\x1a\x0a'</span>+pnglist[i]+<span class="string">b'\x49\x45\x4e\x44\xae\x42\x60\x82'</span></span><br><span class="line">        filename=<span class="string">'./img/'</span>+b[<span class="number">6</span>:<span class="number">-4</span>]+<span class="string">'/'</span>+str(i)+<span class="string">'.png'</span></span><br><span class="line">        f=open(filename,<span class="string">'wb'</span>)</span><br><span class="line">        f.write(a)</span><br><span class="line">        f.close()</span><br></pre></td></tr></table></figure>
+<p>即可得到游戏中出现的大部分图像，需要汉化的图片大部分在<code>img_cutin_name</code>文件夹下。</p>
+<p><img src="/2019/04/22/ライダーあつめ反编译过程/1555944951267.png" alt="1555944951267"></p>
+<p>至此，理论上汉化工作可以全部完成。</p>
+<p>实际情况嘛……有没有太太愿意揽这个体力活啊（哭</p>
+<h3 id="重新打包"><a href="#重新打包" class="headerlink" title="重新打包"></a>重新打包</h3><p>汉化工作全部完成后，删除META-INF文件夹。此时所有文件应如下图：</p>
+<p><img src="/2019/04/22/ライダーあつめ反编译过程/1556014011664.png" alt="1556014011664"></p>
+<p>使用<code>apktool box</code>重编译并签名，即可在真机上运行；也可使用<code>apktool</code>的<code>apptool b</code>命令进行重编译，再用签名工具签名。</p>
+<p><img src="/2019/04/22/ライダーあつめ反编译过程/1556014219923.png" alt="1556014219923"></p>
+<p>对签名必要性的说明引用如下：</p>
+<blockquote>
+<p>重新打包好的apk并不能在真机上运行，是因为真机会检测安卓程序的签名，安卓的apk在签名时会对所有源文件进行一个hash运算，安装时hash校验失败就会拒绝安装。</p>
+</blockquote>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>img_takara文件夹承包了我下午的全部快乐<del>和槽点</del></p>
+<p>折腾编码的时候小明来了，在海东和怪人boss作战的时候一般路过（……）并拿枪指着修卡小兵摸鱼划水x</p>
+<p>第一次露面就是dcd组同场我是很开心啦！但是这个小明也太真实了叭！海东打架他看热闹的！</p>
+<p>截了12次图才截到同场瞬间（</p>
+<p><img src="/2019/04/22/ライダーあつめ反编译过程/1556016075513.png" alt="1556016075513"></p>
+<p>前前后后折腾了一天，走了一些弯路（对没错就是编码问题），希望下次能做的更好 :D</p>
+</the>
+      
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/04/22/ライダーあつめ反编译过程/">《ライダーあつめ》反编译过程</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 ylylhl 的个人博客">ylylhl</a></p>
+        <p><span>发布时间:</span>2019年04月22日 - 20时45分</p>
+        <p><span>最后更新:</span>2019年04月23日 - 19时35分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/04/22/ライダーあつめ反编译过程/" title="《ライダーあつめ》反编译过程">http://ylylhl.github.io/2019/04/22/ライダーあつめ反编译过程/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://ylylhl.github.io/2019/04/22/ライダーあつめ反编译过程/　　作者: ylylhl" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target="_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/31/恶意代码lab01/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">恶意代码分析实战lab01-2/3/4</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用工具"><span class="toc-number">2.</span> <span class="toc-text">使用工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析过程"><span class="toc-number">3.</span> <span class="toc-text">分析过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#apk文件结构"><span class="toc-number">3.1.</span> <span class="toc-text">apk文件结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反编译-系统部分汉化"><span class="toc-number">3.2.</span> <span class="toc-text">反编译/系统部分汉化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提取资源-图鉴部分汉化"><span class="toc-number">3.3.</span> <span class="toc-text">提取资源/图鉴部分汉化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重新打包"><span class="toc-number">3.4.</span> <span class="toc-text">重新打包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-number">4.</span> <span class="toc-text">后记</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2019/03/31/恶意代码lab01/" title="下一篇: 恶意代码分析实战lab01-2/3/4">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/04/22/ライダーあつめ反编译过程/">《ライダーあつめ》反编译过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/31/恶意代码lab01/">恶意代码分析实战lab01-2/3/4</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/XSS简述&入门/">XSS学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/13/仓库：K-Means的python实现/">K-means的python实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/29/仓库：C4-5的python实现/">C4.5的python实现</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 ylylhl
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-" + backgroundnum +".jpg)";
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+    <script type="text/javascript">
+      window.onload = function(){
+        document.getElementById("search").onclick = function(){
+            console.log("search")
+            search();
+        }
+      }
+      function search(){
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+        (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+        e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','A1Pz-LKMXbrzcFg2FWi6','2.0.0');
+      }
+    </script>
+
+  </div>
+</body>
+</html>
