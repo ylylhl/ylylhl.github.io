@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>DVWA文件上传 | ylylhl&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="堆一下实验报告">
+<meta name="keywords" content="web,文件上传">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DVWA文件上传">
+<meta property="og:url" content="http://ylylhl.github.io/2019/05/11/DVWA文件上传/index.html">
+<meta property="og:site_name" content="ylylhl&#39;s blog">
+<meta property="og:description" content="堆一下实验报告">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-a81e78efb762aff1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-923ed30ccc1ff1ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-7d33032fc376b5f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-a5badc69be1c292b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-cbf6b441ab844d14.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-46cb24ce46a42e87.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-e8cda6e584e6c02e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-e8e701b1653c872f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-43848afcf611dadc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-cb878ea28c8e3e29.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-2164416dac6307a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-b64eb048cbcdad85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-207647de7395604a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-05-11T06:19:06.177Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DVWA文件上传">
+<meta name="twitter:description" content="堆一下实验报告">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/10480445-a81e78efb762aff1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: false,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img src="/img/head.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title>ylylhl</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">明日のメダルと掴む腕</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="search" placeholder=" Search...">
+            </form>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">-首页-</a></li>
+                        
+                            <li><a href="/archives">-归档-</a></li>
+                        
+                            <li><a href="/about">-关于-</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=laKtpKWmpaKspdXk5Lv2_vg" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/ylylhl" title="github">github</a>
+                            
+                                <a class="fl weibo" target="_blank" href="https://weibo.com/u/5655801541" title="weibo">weibo</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Android逆向/" style="font-size: 10px;">Android逆向</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/汉化/" style="font-size: 10px;">汉化</a> <a href="/tags/逆向/" style="font-size: 20px;">逆向</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://obolu.github.io/">obolu的小博客</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">日常摸鱼，长期搬砖，ygo娱乐玩家，来打只看不产，布鲁游天下第一。</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">ylylhl</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img src="/img/head.png" class="js-avatar" style="width: 100%; height: 100%; opacity: 1;">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">ylylhl</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">明日のメダルと掴む腕</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">-首页-</a></li>
+                
+                    <li><a href="/archives">-归档-</a></li>
+                
+                    <li><a href="/about">-关于-</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=laKtpKWmpaKspdXk5Lv2_vg" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/ylylhl" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="https://weibo.com/u/5655801541" title="weibo">weibo</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-DVWA文件上传" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/05/11/DVWA文件上传/" class="article-date">
+      <time datetime="2019-05-11T05:52:00.000Z" itemprop="datePublished">2019-05-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      DVWA文件上传
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/杂物堆积/">杂物堆积</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/文件上传/">文件上传</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in index | 首页摘要><br>堆一下实验报告<br><a id="more"></a></excerpt></p>
+<p><the rest of contents | 余下全文></the></p>
+<h2 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h2><p>文件上传漏洞指用户上传了一个可执行的脚本文件，并通过此脚本文件获得了执行服务器端命令的能力。<br>防范漏洞的方法可分为两种：<br>1）客户端检测<br>客户端使用Javascript检测，在文件未上传时就对文件进行验证。<br>2）服务器端检测<br>在服务器端通过脚本进行检测，如文件扩展名是否合法、或黑白名单等。</p>
+<h3 id="常见攻击方法"><a href="#常见攻击方法" class="headerlink" title="常见攻击方法"></a>常见攻击方法</h3><p><strong>1. 客户端检测后缀</strong><br>​    思路：F12修改前台代码或使用burpsuite修改上传后缀<br><strong>2.服务端MIME类型检测</strong>（Content-Type）<br>思路：修改文件名，修改Content-Type<br><strong>3.服务端目录路径检测(服务端检测后缀)</strong><br>思路：利用处理特性，如使用%00截断<br><strong>4.服务端文件扩展名检测</strong><br> 黑名单检测<br>（1）文件名大小写绕过<br>（2）特殊文件名绕过（test.asp. 或test.asp_，windows内. _默认为空格）<br>（3）%00截断绕过（test.asp%00.jpg ）<br>（4）.htaccess文件攻击（上传自定义htaccess）<br>白名单检测需与其他漏洞结合利用，如文件包含<br><strong>5.服务端文件内容检测</strong><br>文件相关信息检测：与其他攻击方法结合利用，如.htaccess文件攻击<br><strong>6.解析攻击</strong><br>apache2.2.8之前的版本存在解析漏洞，若文件名为s1.s2.s3  首先解析s3，如果无法解析再解析s2，所以可以构建文件为up.php.qwe<br>IIS6.0版本如果在目录名中含有.asp字符串，就按照asp去解析。如果文件名含有”.asp;”那么就会优先按照asp解析；7.0/7.5版本在url后面追加字符串“/任意文件名.php”就会按照php方式解析</p>
+<h3 id="应对方法"><a href="#应对方法" class="headerlink" title="应对方法"></a>应对方法</h3><p>避免文件上传功能带来的安全问题：<br>（1）文件上传的目录设置为不可执行；<br>（2）用白名单机制判断文件类型（文件后缀、文件头）；<br>（3）对上传的文件做更改文件名、压缩、格式化等预处理；<br>（4）单独设置文件服务器的域名。</p>
+<h2 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h2><h3 id="low"><a href="#low" class="headerlink" title="low"></a>low</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="keyword">if</span>( <span class="keyword">isset</span>( $_POST[ <span class="string">'Upload'</span> ] ) ) &#123; </span><br><span class="line">    <span class="comment">// Where are we going to be writing to? </span></span><br><span class="line">    $target_path  = DVWA_WEB_PAGE_TO_ROOT . <span class="string">"hackable/uploads/"</span>; </span><br><span class="line">    $target_path .= basename( $_FILES[ <span class="string">'uploaded'</span> ][ <span class="string">'name'</span> ] ); </span><br><span class="line">    <span class="comment">// Can we move the file to the upload folder? </span></span><br><span class="line">    <span class="keyword">if</span>( !move_uploaded_file( $_FILES[ <span class="string">'uploaded'</span> ][ <span class="string">'tmp_name'</span> ], $target_path ) ) &#123; </span><br><span class="line">        <span class="comment">// No </span></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'&lt;pre&gt;Your image was not uploaded.&lt;/pre&gt;'</span>; </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">else</span> &#123; </span><br><span class="line">        <span class="comment">// Yes! </span></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"&lt;pre&gt;&#123;$target_path&#125; succesfully uploaded!&lt;/pre&gt;"</span>; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>可以看到未做任何防护，直接上传即可。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-a81e78efb762aff1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="medium"><a href="#medium" class="headerlink" title="medium"></a>medium</h3><p>关键代码如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// File information </span></span><br><span class="line">$uploaded_name = $_FILES[ <span class="string">'uploaded'</span> ][ <span class="string">'name'</span> ]; </span><br><span class="line">$uploaded_type = $_FILES[ <span class="string">'uploaded'</span> ][ <span class="string">'type'</span> ]; </span><br><span class="line">$uploaded_size = $_FILES[ <span class="string">'uploaded'</span> ][ <span class="string">'size'</span> ]; </span><br><span class="line"><span class="comment">// Is it an image? </span></span><br><span class="line"><span class="keyword">if</span>( ( $uploaded_type == <span class="string">"image/jpeg"</span> || $uploaded_type == <span class="string">"image/png"</span> ) &amp;&amp; </span><br><span class="line">    ( $uploaded_size &lt; <span class="number">100000</span> ) ) &#123;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到在服务器端检测了MIME类型。因此，思路如下：</p>
+<ol>
+<li>更改文件content-type</li>
+<li>更改文件后缀名</li>
+</ol>
+<h4 id="更改文件content-type"><a href="#更改文件content-type" class="headerlink" title="更改文件content-type"></a>更改文件content-type</h4><p>将content-type更改为image，举例如下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-923ed30ccc1ff1ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>可以看到成功上传了文件。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-7d33032fc376b5f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="更改文件后缀名"><a href="#更改文件后缀名" class="headerlink" title="更改文件后缀名"></a>更改文件后缀名</h4><h5 id="抓包更改后缀"><a href="#抓包更改后缀" class="headerlink" title="抓包更改后缀"></a>抓包更改后缀</h5><p>更改文件后缀为jpg，设置代理并上传，抓包如下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-a5badc69be1c292b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>将文件后缀改为php，点击Forward按钮</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-cbf6b441ab844d14.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>可以看到成功上传了文件。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-46cb24ce46a42e87.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h5 id="00截断"><a href="#00截断" class="headerlink" title="%00截断"></a>%00截断</h5><p>在php版本小于5.3.4的服务器中，当Magic_quote_gpc选项为off时，可以在文件名中使用%00截断。可选方法举例如下：</p>
+<ol>
+<li>更改文件后缀为.php.jpg，设置代理并上传。抓包并将php.jpg中的字符“.”（十六进制0x2e）更改为00。</li>
+<li>更改文件后缀为.php.jpg，设置代理并上传。抓包并在php.jpg中的字符“.”（十六进制0x2e）前右键选择insert byte，增加一个0x00字节。</li>
+<li>更改文件后缀为.php%00.jpg，设置代理并上传。抓包并选中%00，右键url-decode。</li>
+</ol>
+<p>这里取第一种方法，如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-e8cda6e584e6c02e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>同样可以成功上传。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-e8e701b1653c872f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="high"><a href="#high" class="headerlink" title="high"></a>high</h3><p>关键代码如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// File information </span></span><br><span class="line">$uploaded_name = $_FILES[ <span class="string">'uploaded'</span> ][ <span class="string">'name'</span> ]; </span><br><span class="line">$uploaded_ext  = substr( $uploaded_name, strrpos( $uploaded_name, <span class="string">'.'</span> ) + <span class="number">1</span>); </span><br><span class="line">$uploaded_size = $_FILES[ <span class="string">'uploaded'</span> ][ <span class="string">'size'</span> ]; </span><br><span class="line">$uploaded_tmp  = $_FILES[ <span class="string">'uploaded'</span> ][ <span class="string">'tmp_name'</span> ]; </span><br><span class="line"><span class="comment">// Is it an image? </span></span><br><span class="line"><span class="keyword">if</span>( ( strtolower( $uploaded_ext ) == <span class="string">"jpg"</span> || strtolower( $uploaded_ext ) == <span class="string">"jpeg"</span> || strtolower( $uploaded_ext ) == <span class="string">"png"</span> ) &amp;&amp; </span><br><span class="line">    ( $uploaded_size &lt; <span class="number">100000</span> ) &amp;&amp; </span><br><span class="line">    getimagesize( $uploaded_tmp ) ) &#123;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到判断了文件后缀以及是否是图像文件。</p>
+<blockquote>
+<p>strrpos() 函数查找字符串在另一字符串中最后一次出现的位置。<br>getimagesize() 函数用于获取图像大小及相关信息，成功返回一个数组，失败则返回 FALSE 并产生一条 E_WARNING 级的错误信息。</p>
+</blockquote>
+<p>制作图片木马：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-43848afcf611dadc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>成功上传</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-cb878ea28c8e3e29.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>利用dvwa-high级别的文件包含漏洞，payload为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.6.6/DVWA/vulnerabilities/fi/?page=file://c:\wamp\WWW\DVWA\hackable\uploads\1.png</span><br></pre></td></tr></table></figure></p>
+<p>尝试代码执行，可以看到文件中的php代码被解析，成功显示了phpinfo。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-2164416dac6307a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>使用蚁剑连接，连不上（……）可能是因为实验环境是7.x版本的php，区别详见<a href="https://php.net/manual/zh/migration71.incompatible.php" target="_blank" rel="noopener">PHP-不向后兼容</a>。干脆通过代码执行写入php文件，payload如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pass=file_put_contents(&quot;shell.php&quot;,&quot;&lt;?php eval(\$_POST[&apos;shell&apos;]);?&gt;&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>设置参数如下</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-b64eb048cbcdad85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>成功连接。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-207647de7395604a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+
+      
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/05/11/DVWA文件上传/">DVWA文件上传</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 ylylhl 的个人博客">ylylhl</a></p>
+        <p><span>发布时间:</span>2019年05月11日 - 13时52分</p>
+        <p><span>最后更新:</span>2019年05月11日 - 14时19分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/05/11/DVWA文件上传/" title="DVWA文件上传">http://ylylhl.github.io/2019/05/11/DVWA文件上传/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://ylylhl.github.io/2019/05/11/DVWA文件上传/　　作者: ylylhl" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target="_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/29/恶意代码分析实战Lab03_3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">恶意代码分析实战lab03-3</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#实验原理"><span class="toc-number">1.</span> <span class="toc-text">实验原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#常见攻击方法"><span class="toc-number">1.1.</span> <span class="toc-text">常见攻击方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应对方法"><span class="toc-number">1.2.</span> <span class="toc-text">应对方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验内容"><span class="toc-number">2.</span> <span class="toc-text">实验内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#low"><span class="toc-number">2.1.</span> <span class="toc-text">low</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#medium"><span class="toc-number">2.2.</span> <span class="toc-text">medium</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#更改文件content-type"><span class="toc-number">2.2.1.</span> <span class="toc-text">更改文件content-type</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更改文件后缀名"><span class="toc-number">2.2.2.</span> <span class="toc-text">更改文件后缀名</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#抓包更改后缀"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">抓包更改后缀</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#00截断"><span class="toc-number">2.2.2.2.</span> <span class="toc-text">%00截断</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#high"><span class="toc-number">2.3.</span> <span class="toc-text">high</span></a></li></ol></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+<div class="share">
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+    <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+    <a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+    </div>
+    <script>
+        window._bd_share_config={
+            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+</div>
+
+
+
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2019/04/29/恶意代码分析实战Lab03_3/" title="下一篇: 恶意代码分析实战lab03-3">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/05/11/DVWA文件上传/">DVWA文件上传</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/恶意代码分析实战Lab03_3/">恶意代码分析实战lab03-3</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/22/ライダーあつめ反编译过程/">《ライダーあつめ》反编译过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/31/恶意代码分析实战lab01/">恶意代码分析实战lab01-2/3/4</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/XSS简述&入门/">XSS学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/13/仓库：K-Means的python实现/">K-means的python实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/29/仓库：C4-5的python实现/">C4.5的python实现</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 ylylhl
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-" + backgroundnum +".jpg)";
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+    <script type="text/javascript">
+      window.onload = function(){
+        document.getElementById("search").onclick = function(){
+            console.log("search")
+            search();
+        }
+      }
+      function search(){
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+        (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+        e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','A1Pz-LKMXbrzcFg2FWi6','2.0.0');
+      }
+    </script>
+
+  </div>
+</body>
+</html>

