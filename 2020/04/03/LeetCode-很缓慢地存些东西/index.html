@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>LeetCode：很缓慢地存些东西 | ylylhl&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="总之就是每天搞一道题。挑一些自我反省来写。">
+<meta name="keywords" content="算法练习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode：很缓慢地存些东西">
+<meta property="og:url" content="http://ylylhl.github.io/2020/04/03/LeetCode-很缓慢地存些东西/index.html">
+<meta property="og:site_name" content="ylylhl&#39;s blog">
+<meta property="og:description" content="总之就是每天搞一道题。挑一些自我反省来写。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-04-24T06:30:35.118Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode：很缓慢地存些东西">
+<meta name="twitter:description" content="总之就是每天搞一道题。挑一些自我反省来写。">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: false,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img src="/img/head.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title>ylylhl</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">明日のメダルと掴む腕</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="search" placeholder=" Search...">
+            </form>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">-首页-</a></li>
+                        
+                            <li><a href="/archives">-归档-</a></li>
+                        
+                            <li><a href="/about">-关于-</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=laKtpKWmpaKspdXk5Lv2_vg" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/ylylhl" title="github">github</a>
+                            
+                                <a class="fl weibo" target="_blank" href="https://weibo.com/u/5655801541" title="weibo">weibo</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Android逆向/" style="font-size: 10px;">Android逆向</a> <a href="/tags/BSGS/" style="font-size: 10px;">BSGS</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/web/" style="font-size: 15px;">web</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/汉化/" style="font-size: 10px;">汉化</a> <a href="/tags/算法练习/" style="font-size: 10px;">算法练习</a> <a href="/tags/逆向/" style="font-size: 15px;">逆向</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://obolu.github.io/">obolu的小博客</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">日常摸鱼，长期搬砖，ygo娱乐玩家，来打只看不产，布鲁游天下第一。</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">ylylhl</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img src="/img/head.png" class="js-avatar" style="width: 100%; height: 100%; opacity: 1;">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">ylylhl</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">明日のメダルと掴む腕</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">-首页-</a></li>
+                
+                    <li><a href="/archives">-归档-</a></li>
+                
+                    <li><a href="/about">-关于-</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=laKtpKWmpaKspdXk5Lv2_vg" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/ylylhl" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="https://weibo.com/u/5655801541" title="weibo">weibo</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-LeetCode-很缓慢地存些东西" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/04/03/LeetCode-很缓慢地存些东西/" class="article-date">
+      <time datetime="2020-04-03T09:57:29.000Z" itemprop="datePublished">2020-04-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      LeetCode：很缓慢地存些东西
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/杂物堆积/">杂物堆积</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法练习/">算法练习</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in index | 首页摘要><br>总之就是每天搞一道题。挑一些自我反省来写。<br><a id="more"></a></excerpt></p>
+<p><the rest of contents | 余下全文><br>有时两题，有时零题。<br>我常常因为自己太菜而一道题写半天.jpg</the></p>
+<h2 id="4-2"><a href="#4-2" class="headerlink" title="4.2"></a>4.2</h2><h3 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h3><p><a href="https://leetcode-cn.com/problems/add-two-numbers/" target="_blank" rel="noopener">2. 两数相加</a></p>
+<h3 id="很喜欢的解法"><a href="#很喜欢的解法" class="headerlink" title="很喜欢的解法"></a>很喜欢的解法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">addTwoNumbers</span><span class="params">(self, l1: ListNode, l2: ListNode)</span> -&gt; ListNode:</span></span><br><span class="line">        dummyHead = ListNode(<span class="number">0</span>)</span><br><span class="line">        curr, carry = dummyHead, <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> l1 <span class="keyword">or</span> l2:</span><br><span class="line">            sum = <span class="number">0</span></span><br><span class="line">            <span class="keyword">if</span> l1:</span><br><span class="line">                sum += l1.val</span><br><span class="line">                l1 = l1.next</span><br><span class="line">            <span class="keyword">if</span> l2:</span><br><span class="line">                sum += l2.val</span><br><span class="line">                l2 = l2.next</span><br><span class="line">            sum += carry</span><br><span class="line">            carry = sum // <span class="number">10</span></span><br><span class="line">            curr.next = ListNode(sum % <span class="number">10</span>)</span><br><span class="line">            curr = curr.next</span><br><span class="line">        <span class="keyword">if</span> carry &gt; <span class="number">0</span>:</span><br><span class="line">            curr.next = ListNode(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> dummyHead.next;</span><br></pre></td></tr></table></figure>
+<h3 id="自己第一反应的解法"><a href="#自己第一反应的解法" class="headerlink" title="自己第一反应的解法"></a>自己第一反应的解法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">addTwoNumbers</span><span class="params">(self, l1: ListNode, l2: ListNode)</span> -&gt; ListNode:</span></span><br><span class="line">        b=ListNode(<span class="number">0</span>)</span><br><span class="line">        c=b</span><br><span class="line">        <span class="keyword">while</span> l1 <span class="keyword">or</span> l2:</span><br><span class="line">            c.val+=sum(list(map(<span class="keyword">lambda</span> x:<span class="number">0</span> <span class="keyword">if</span> x==<span class="literal">None</span> <span class="keyword">else</span> x.val,[l1,l2])))</span><br><span class="line">            l1,l2=list(map(<span class="keyword">lambda</span> x:x <span class="keyword">if</span> x==<span class="literal">None</span> <span class="keyword">else</span> x.next,[l1,l2]))</span><br><span class="line">            c.next=[ListNode(c.val//<span class="number">10</span>),<span class="literal">None</span>][c.val&lt;<span class="number">10</span> <span class="keyword">and</span> l1==l2==<span class="literal">None</span>]</span><br><span class="line">            c.val%=<span class="number">10</span></span><br><span class="line">            c=c.next</span><br><span class="line">        <span class="keyword">return</span> b</span><br></pre></td></tr></table></figure>
+<h3 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h3><ul>
+<li>发现自己的解法太过耗脑就不要一直莽，想想别的出路。就好像这道题，做一个哑节点会让逻辑和操作都清晰很多。</li>
+<li><code>lambda</code>真的很酷炫，也很容易沉迷……但别瞎用。这东西对于提升运行效率并无助益，平时跑起来感觉不到什么，但其实会很慢。慢到想死。</li>
+<li>多看数据结构，多看数据结构，多看数据结构。<h2 id="4-3"><a href="#4-3" class="headerlink" title="4.3"></a>4.3</h2><h3 id="题目链接-1"><a href="#题目链接-1" class="headerlink" title="题目链接"></a>题目链接</h3></li>
+</ul>
+<p><a href="https://leetcode-cn.com/problems/string-to-integer-atoi/" target="_blank" rel="noopener">8. 字符串转换整数 (atoi)</a></p>
+<h3 id="很喜欢的解法-1"><a href="#很喜欢的解法-1" class="headerlink" title="很喜欢的解法"></a>很喜欢的解法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">myAtoi</span><span class="params">(self, str: str)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">return</span> max(min(int(*re.findall(<span class="string">'^[\+\-]?\d+'</span>, str.lstrip())), <span class="number">2</span>**<span class="number">31</span> - <span class="number">1</span>), <span class="number">-2</span>**<span class="number">31</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="自己第一反应的解法-1"><a href="#自己第一反应的解法-1" class="headerlink" title="自己第一反应的解法"></a>自己第一反应的解法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">myAtoi</span><span class="params">(self, str: str)</span> -&gt; int:</span></span><br><span class="line">        r=<span class="string">''</span></span><br><span class="line">        l=<span class="string">'0123456789'</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> str:</span><br><span class="line">            <span class="keyword">if</span> (i==<span class="string">' '</span> <span class="keyword">and</span> r!=<span class="string">''</span>) <span class="keyword">or</span> (i <span class="keyword">not</span> <span class="keyword">in</span> l+<span class="string">'-+ '</span>):</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">if</span> (i <span class="keyword">in</span> <span class="string">'-+'</span>) <span class="keyword">and</span> (len(r)!=<span class="number">0</span> <span class="keyword">or</span> (<span class="string">'-'</span> <span class="keyword">in</span> r <span class="keyword">or</span> <span class="string">'+'</span> <span class="keyword">in</span> r)):</span><br><span class="line">                <span class="keyword">if</span> len(r)==<span class="number">1</span>:<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">                <span class="keyword">else</span>:<span class="keyword">break</span></span><br><span class="line">            <span class="keyword">if</span> i <span class="keyword">in</span> l+<span class="string">'-+'</span>:</span><br><span class="line">                r+=i</span><br><span class="line">        <span class="keyword">if</span> r <span class="keyword">in</span> <span class="string">'-+'</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> max(min(int(r),<span class="number">2</span>**<span class="number">31</span><span class="number">-1</span>),<span class="number">-2</span>**<span class="number">31</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="感想-1"><a href="#感想-1" class="headerlink" title="感想"></a>感想</h3><ul>
+<li>正则可以省很多事，能上正则的时候就尽量上正则。</li>
+<li>不要觉得一个技巧很酷就一直用，要多多依赖自带函数。就好像在这道题里<code>str.lstrip()</code>比遍历判断空格更好用，<code>min(r,2**31-1)</code>比<code>[r,2**31-1][r&gt;=2**31-1]</code>更清晰。虽然用列表来写判断很有趣，但不要遇事不决上列表（……）本道理同样适用于<code>lambda x</code>。</li>
+<li>造测试样例很重要（……）尽可能把所有可能的情况都包含上比较好，想的不够多又相信自己的脑子就会出很多WA和RE（。</li>
+</ul>
+<h2 id="4-17"><a href="#4-17" class="headerlink" title="4.17"></a>4.17</h2><p>隔很多天又去A了一下每日一题（……）<br>要么太难要么太简单，今天正好难度适中动了动脑子（……）</p>
+<h3 id="题目链接-2"><a href="#题目链接-2" class="headerlink" title="题目链接"></a>题目链接</h3><p><a href="https://leetcode-cn.com/problems/jump-game/submissions/" target="_blank" rel="noopener">35.跳跃游戏</a></p>
+<h3 id="很喜欢的解法-2"><a href="#很喜欢的解法-2" class="headerlink" title="很喜欢的解法"></a>很喜欢的解法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">canJump</span><span class="params">(self, nums)</span> :</span></span><br><span class="line">        max_i = <span class="number">0</span>       <span class="comment">#初始化当前能到达最远的位置</span></span><br><span class="line">        <span class="keyword">for</span> i, jump <span class="keyword">in</span> enumerate(nums):   <span class="comment">#i为当前位置，jump是当前位置的跳数</span></span><br><span class="line">            <span class="keyword">if</span> max_i&gt;=i <span class="keyword">and</span> i+jump&gt;max_i:  <span class="comment">#如果当前位置能到达，并且当前位置+跳数&gt;最远位置  </span></span><br><span class="line">                max_i = i+jump  <span class="comment">#更新最远能到达位置</span></span><br><span class="line">        <span class="keyword">return</span> max_i&gt;=i</span><br></pre></td></tr></table></figure>
+<h3 id="自己第一反应的解法-2"><a href="#自己第一反应的解法-2" class="headerlink" title="自己第一反应的解法"></a>自己第一反应的解法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">canJump</span><span class="params">(self, nums: List[int])</span> -&gt; bool:</span></span><br><span class="line">        maxc=nums[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">if</span> i&gt;maxc:<span class="keyword">break</span></span><br><span class="line">            <span class="keyword">if</span> (i+nums[i])&gt;=(len(nums)<span class="number">-1</span>):<span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            maxc=max(maxc,nums[i]+i)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+<h3 id="感想-2"><a href="#感想-2" class="headerlink" title="感想"></a>感想</h3><ul>
+<li><code>enumerate()</code>是不是比<code>range(len())</code>要快啊！好不安，总之度了一下，大家说尽量用<code>enumerate</code>取代掉<code>range</code>，那就这样叭（</li>
+<li>想了想其实初始值直接<code>maxc=0</code>就好了（……）不过这样子赋值也没什么影响，大概。</li>
+</ul>
+<h2 id="4-18"><a href="#4-18" class="headerlink" title="4.18"></a>4.18</h2><h3 id="题目链接-3"><a href="#题目链接-3" class="headerlink" title="题目链接"></a>题目链接</h3><p><a href="https://leetcode-cn.com/problems/container-with-most-water/" target="_blank" rel="noopener">11. 盛最多水的容器</a></p>
+<h3 id="自己暴力开冲超时以后的修改解法"><a href="#自己暴力开冲超时以后的修改解法" class="headerlink" title="自己暴力开冲超时以后的修改解法"></a>自己暴力开冲超时以后的修改解法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxArea</span><span class="params">(self, height: List[int])</span> -&gt; int:</span></span><br><span class="line">        maxm=<span class="number">0</span></span><br><span class="line">        i,j=<span class="number">0</span>,len(height)<span class="number">-1</span></span><br><span class="line">        <span class="keyword">while</span> i!=j:</span><br><span class="line">            maxm=max(maxm,(j-i)*min(height[i],height[j]))</span><br><span class="line">            <span class="keyword">if</span> height[i]&lt;height[j]:</span><br><span class="line">                i+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                j-=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> maxm</span><br></pre></td></tr></table></figure>
+<h3 id="感想-3"><a href="#感想-3" class="headerlink" title="感想"></a>感想</h3><ul>
+<li>关于解法的说明：尝试过程中矩形底边必定不断变小，而矩形的高又是<code>min(height[i],height[j])</code>，所以只能通过改变min值来增加矩形面积，亦即改变这两个值中的较小值……也就是较矮一端的柱子。<br>视频：<a href="https://leetcode-cn.com/problems/container-with-most-water/solution/shuang-zhi-zhen-fa-zheng-ming-jian-dan-yi-dong-bu-/" target="_blank" rel="noopener">【双指针法】的合理性证明 - LeetCode</a></li>
+<li>后来去看了看题解，在判断那里可以再加一下。如果下一个位置比现在的位置数值还要小，可以直接跳过，免得重复计算面积（……）天才吗（<h2 id="4-19"><a href="#4-19" class="headerlink" title="4.19"></a>4.19</h2><h3 id="题目链接-4"><a href="#题目链接-4" class="headerlink" title="题目链接"></a>题目链接</h3><a href="https://leetcode-cn.com/problems/reformat-the-string/" target="_blank" rel="noopener">5388. 重新格式化字符串</a><h3 id="很喜欢的解法-3"><a href="#很喜欢的解法-3" class="headerlink" title="很喜欢的解法"></a>很喜欢的解法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reformat</span><span class="params">(self, s: str)</span> -&gt; str:</span></span><br><span class="line">        a=re.findall(<span class="string">r'\d'</span>,s)</span><br><span class="line">        b=re.findall(<span class="string">r'[a-z]'</span>,s)</span><br><span class="line">        <span class="keyword">if</span> abs(len(a)-len(b))&gt;<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">''</span></span><br><span class="line">        a,b=sorted([a,b],key=len)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">''</span>.join(map(<span class="string">''</span>.join,itertools.zip_longest(b,a,fillvalue=<span class="string">''</span>)))</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="自己第一反应的解法-3"><a href="#自己第一反应的解法-3" class="headerlink" title="自己第一反应的解法"></a>自己第一反应的解法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reformat</span><span class="params">(self, s: str)</span> -&gt; str:</span></span><br><span class="line">        a=re.findall(<span class="string">'[a-z]'</span>,s)</span><br><span class="line">        b=re.findall(<span class="string">'[0-9]'</span>,s)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> (<span class="number">-1</span>&lt;=(len(a)-len(b))&lt;=<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span></span><br><span class="line">        <span class="keyword">if</span> len(b)&gt;len(a):a,b=b,a</span><br><span class="line">        c=<span class="string">''</span>.join([y <span class="keyword">for</span> x <span class="keyword">in</span> zip(a,b) <span class="keyword">for</span> y <span class="keyword">in</span> x])</span><br><span class="line">        <span class="keyword">if</span> len(a)!=len(b):c+=a[<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">return</span> c</span><br></pre></td></tr></table></figure>
+<h3 id="感想-4"><a href="#感想-4" class="headerlink" title="感想"></a>感想</h3><ul>
+<li>是我读的函数太少，是我太菜，我根本没掌握<code>map</code>的正确用法，下次一定写<code>abs</code>和<code>sorted</code>，dbq，dbq</li>
+</ul>
+<h2 id="4-20"><a href="#4-20" class="headerlink" title="4.20"></a>4.20</h2><h3 id="题目链接-5"><a href="#题目链接-5" class="headerlink" title="题目链接"></a>题目链接</h3><p><a href="https://leetcode-cn.com/problems/contains-duplicate-ii/" target="_blank" rel="noopener">219. 存在重复元素 II</a></p>
+<h3 id="很喜欢的解法-4"><a href="#很喜欢的解法-4" class="headerlink" title="很喜欢的解法"></a>很喜欢的解法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">containsNearbyDuplicate</span><span class="params">(self, nums: List[int], k: int)</span> -&gt; bool:</span></span><br><span class="line">        tmp=set()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">if</span> nums[i] <span class="keyword">in</span> tmp:<span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            tmp.add(nums[i])</span><br><span class="line">            <span class="keyword">if</span> len(tmp)&gt;k:</span><br><span class="line">                tmp.remove(nums[i-k])</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+<h3 id="自己安定超时的第一反应"><a href="#自己安定超时的第一反应" class="headerlink" title="自己安定超时的第一反应"></a>自己安定超时的第一反应</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">containsNearbyDuplicate</span><span class="params">(self, nums: List[int], k: int)</span> -&gt; bool:</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">                <span class="keyword">if</span> j!=i <span class="keyword">and</span> nums[j]==nums[i] <span class="keyword">and</span> -k&lt;=(i-j)&lt;=k:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+<h3 id="感想-5"><a href="#感想-5" class="headerlink" title="感想"></a>感想</h3><ul>
+<li>暴力不可取，停止套娃。</li>
+<li>能搞懂各种数据结构的应用场合是快乐做题的关键一步（？）</li>
+</ul>
+<h3 id="题目链接-6"><a href="#题目链接-6" class="headerlink" title="题目链接"></a>题目链接</h3><p><a href="https://leetcode-cn.com/problems/number-of-islands/" target="_blank" rel="noopener">200. 岛屿数量</a></p>
+<h3 id="看了题解的解法（BFS）"><a href="#看了题解的解法（BFS）" class="headerlink" title="看了题解的解法（BFS）"></a>看了题解的解法（BFS）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">numIslands</span><span class="params">(self, grid: List[List[str]])</span> -&gt; int:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">bfs</span><span class="params">(grid,i,j)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> i&lt;<span class="number">0</span> <span class="keyword">or</span> j&lt;<span class="number">0</span> <span class="keyword">or</span> i&gt;=len(grid) <span class="keyword">or</span> j&gt;=len(grid[<span class="number">0</span>]) <span class="keyword">or</span> grid[i][j]!=<span class="string">'1'</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            grid[i][j]=<span class="number">0</span></span><br><span class="line">            bfs(grid,i,j<span class="number">-1</span>)</span><br><span class="line">            bfs(grid,i,j+<span class="number">1</span>)</span><br><span class="line">            bfs(grid,i<span class="number">-1</span>,j)</span><br><span class="line">            bfs(grid,i+<span class="number">1</span>,j)</span><br><span class="line"></span><br><span class="line">        count=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(grid)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(grid[<span class="number">0</span>])):</span><br><span class="line">                <span class="keyword">if</span> grid[i][j]==<span class="string">'1'</span>:</span><br><span class="line">                    bfs(grid,i,j)</span><br><span class="line">                    count+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
+<h3 id="感想-6"><a href="#感想-6" class="headerlink" title="感想"></a>感想</h3><ul>
+<li>知道“有这么个东西”和“能把概念和实际情景联系上”，差别真的很大（……）我的数据结构学得仿佛白瞎（。总之还是要多练，任重道远（</li>
+</ul>
+<h2 id="4-21"><a href="#4-21" class="headerlink" title="4.21"></a>4.21</h2><h3 id="题目链接-7"><a href="#题目链接-7" class="headerlink" title="题目链接"></a>题目链接</h3><p><a href="https://leetcode-cn.com/problems/count-number-of-nice-subarrays/" target="_blank" rel="noopener">1248. 统计「优美子数组」</a></p>
+<h3 id="看了题解的解法"><a href="#看了题解的解法" class="headerlink" title="看了题解的解法"></a>看了题解的解法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">numberOfSubarrays</span><span class="params">(self, nums: List[int], k: int)</span> -&gt; int:</span></span><br><span class="line">        tmp=[i <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)) <span class="keyword">if</span> nums[i]%<span class="number">2</span>!=<span class="number">0</span>]</span><br><span class="line">        tmp=[<span class="number">-1</span>]+tmp+[len(nums)]</span><br><span class="line">        count=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(tmp)-k):</span><br><span class="line">            count+=(tmp[i]-tmp[i<span class="number">-1</span>])*(tmp[i+k]-tmp[i+k<span class="number">-1</span>])</span><br><span class="line">        <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
+<h3 id="感想-7"><a href="#感想-7" class="headerlink" title="感想"></a>感想</h3><ul>
+<li>把列表边界处理下会快乐很多，就像之前那道题的哑结点。我怎么不长教训的（笑）</li>
+</ul>
+<h2 id="4-22"><a href="#4-22" class="headerlink" title="4.22"></a>4.22</h2><h3 id="题目链接-8"><a href="#题目链接-8" class="headerlink" title="题目链接"></a>题目链接</h3><p><a href="https://leetcode-cn.com/problems/binary-tree-right-side-view/" target="_blank" rel="noopener">199. 二叉树的右视图</a></p>
+<h3 id="很喜欢的解法-5"><a href="#很喜欢的解法-5" class="headerlink" title="很喜欢的解法"></a>很喜欢的解法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rightSideView</span><span class="params">(self, root: TreeNode)</span> -&gt; List[int]:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        ans, nodes = [], [root]</span><br><span class="line">        <span class="keyword">while</span> nodes:</span><br><span class="line">            ans.append(nodes[<span class="number">-1</span>].val)</span><br><span class="line">            nodes = [n <span class="keyword">for</span> node <span class="keyword">in</span> nodes <span class="keyword">for</span> n <span class="keyword">in</span> [node.left, node.right] <span class="keyword">if</span> n]</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<h3 id="自己第一反应的解法-4"><a href="#自己第一反应的解法-4" class="headerlink" title="自己第一反应的解法"></a>自己第一反应的解法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 很憨憨的层序遍历</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rightSideView</span><span class="params">(self, root: TreeNode)</span> -&gt; List[int]:</span></span><br><span class="line">        <span class="keyword">if</span> root==<span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        tmp,level=[root],[]</span><br><span class="line">        result=[]</span><br><span class="line">        nowlist=<span class="number">1</span></span><br><span class="line">        nextlist=<span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> tmp:</span><br><span class="line">            node=tmp.pop(<span class="number">0</span>)</span><br><span class="line">            nowlist-=<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> node.left!=<span class="literal">None</span>:</span><br><span class="line">                tmp+=[node.left]</span><br><span class="line">                nextlist+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> node.right!=<span class="literal">None</span>:</span><br><span class="line">                tmp+=[node.right]</span><br><span class="line">                nextlist+=<span class="number">1</span></span><br><span class="line">            level.append(node.val)</span><br><span class="line">            <span class="keyword">if</span> nowlist==<span class="number">0</span>:</span><br><span class="line">                nowlist,nextlist=nextlist,<span class="number">0</span></span><br><span class="line">                result.append(level[<span class="number">-1</span>])</span><br><span class="line">                level=[]</span><br><span class="line">        <span class="keyword">return</span> list(filter(<span class="literal">None</span>,result))</span><br></pre></td></tr></table></figure>
+<h3 id="感想-8"><a href="#感想-8" class="headerlink" title="感想"></a>感想</h3><ul>
+<li>我会个p的bfs和dfs……dbq我又在拿python写c，我是憨憨，笨蛋是我我是笨蛋。</li>
+<li>既然有语法糖就去吃（。</li>
+</ul>
+
+      
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2020/04/03/LeetCode-很缓慢地存些东西/">LeetCode：很缓慢地存些东西</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 ylylhl 的个人博客">ylylhl</a></p>
+        <p><span>发布时间:</span>2020年04月03日 - 17时57分</p>
+        <p><span>最后更新:</span>2020年04月24日 - 14时30分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2020/04/03/LeetCode-很缓慢地存些东西/" title="LeetCode：很缓慢地存些东西">http://ylylhl.github.io/2020/04/03/LeetCode-很缓慢地存些东西/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://ylylhl.github.io/2020/04/03/LeetCode-很缓慢地存些东西/　　作者: ylylhl" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target="_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2019/05/21/KNN的python实现/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">KNN的python实现&amp;简单应用</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2"><span class="toc-number">1.</span> <span class="toc-text">4.2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目链接"><span class="toc-number">1.1.</span> <span class="toc-text">题目链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#很喜欢的解法"><span class="toc-number">1.2.</span> <span class="toc-text">很喜欢的解法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自己第一反应的解法"><span class="toc-number">1.3.</span> <span class="toc-text">自己第一反应的解法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#感想"><span class="toc-number">1.4.</span> <span class="toc-text">感想</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3"><span class="toc-number">2.</span> <span class="toc-text">4.3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目链接-1"><span class="toc-number">2.1.</span> <span class="toc-text">题目链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#很喜欢的解法-1"><span class="toc-number">2.2.</span> <span class="toc-text">很喜欢的解法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自己第一反应的解法-1"><span class="toc-number">2.3.</span> <span class="toc-text">自己第一反应的解法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#感想-1"><span class="toc-number">2.4.</span> <span class="toc-text">感想</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-17"><span class="toc-number">3.</span> <span class="toc-text">4.17</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目链接-2"><span class="toc-number">3.1.</span> <span class="toc-text">题目链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#很喜欢的解法-2"><span class="toc-number">3.2.</span> <span class="toc-text">很喜欢的解法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自己第一反应的解法-2"><span class="toc-number">3.3.</span> <span class="toc-text">自己第一反应的解法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#感想-2"><span class="toc-number">3.4.</span> <span class="toc-text">感想</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-18"><span class="toc-number">4.</span> <span class="toc-text">4.18</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目链接-3"><span class="toc-number">4.1.</span> <span class="toc-text">题目链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自己暴力开冲超时以后的修改解法"><span class="toc-number">4.2.</span> <span class="toc-text">自己暴力开冲超时以后的修改解法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#感想-3"><span class="toc-number">4.3.</span> <span class="toc-text">感想</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-19"><span class="toc-number">5.</span> <span class="toc-text">4.19</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目链接-4"><span class="toc-number">5.1.</span> <span class="toc-text">题目链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#很喜欢的解法-3"><span class="toc-number">5.2.</span> <span class="toc-text">很喜欢的解法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自己第一反应的解法-3"><span class="toc-number">5.3.</span> <span class="toc-text">自己第一反应的解法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#感想-4"><span class="toc-number">5.4.</span> <span class="toc-text">感想</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-20"><span class="toc-number">6.</span> <span class="toc-text">4.20</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目链接-5"><span class="toc-number">6.1.</span> <span class="toc-text">题目链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#很喜欢的解法-4"><span class="toc-number">6.2.</span> <span class="toc-text">很喜欢的解法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自己安定超时的第一反应"><span class="toc-number">6.3.</span> <span class="toc-text">自己安定超时的第一反应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#感想-5"><span class="toc-number">6.4.</span> <span class="toc-text">感想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目链接-6"><span class="toc-number">6.5.</span> <span class="toc-text">题目链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#看了题解的解法（BFS）"><span class="toc-number">6.6.</span> <span class="toc-text">看了题解的解法（BFS）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#感想-6"><span class="toc-number">6.7.</span> <span class="toc-text">感想</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-21"><span class="toc-number">7.</span> <span class="toc-text">4.21</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目链接-7"><span class="toc-number">7.1.</span> <span class="toc-text">题目链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#看了题解的解法"><span class="toc-number">7.2.</span> <span class="toc-text">看了题解的解法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#感想-7"><span class="toc-number">7.3.</span> <span class="toc-text">感想</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-22"><span class="toc-number">8.</span> <span class="toc-text">4.22</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目链接-8"><span class="toc-number">8.1.</span> <span class="toc-text">题目链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#很喜欢的解法-5"><span class="toc-number">8.2.</span> <span class="toc-text">很喜欢的解法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自己第一反应的解法-4"><span class="toc-number">8.3.</span> <span class="toc-text">自己第一反应的解法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#感想-8"><span class="toc-number">8.4.</span> <span class="toc-text">感想</span></a></li></ol></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+<div class="share">
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+    <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+    <a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+    </div>
+    <script>
+        window._bd_share_config={
+            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+</div>
+
+
+
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2019/05/21/KNN的python实现/" title="下一篇: KNN的python实现&amp;简单应用">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/04/03/LeetCode-很缓慢地存些东西/">LeetCode：很缓慢地存些东西</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/21/KNN的python实现/">KNN的python实现&简单应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/11/DVWA文件上传/">DVWA文件上传</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/恶意代码分析实战Lab03_3/">恶意代码分析实战lab03-3</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/22/ライダーあつめ反编译过程/">《ライダーあつめ》反编译过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/31/恶意代码分析实战lab01/">恶意代码分析实战lab01-2/3/4</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/XSS简述&入门/">XSS学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/14/形如a^b(mod-p)=d且p为质数的方程之解/">形如a^b(mod p)=d且p为质数的方程之解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/13/仓库：K-Means的python实现/">K-means的python实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/29/仓库：C4-5的python实现/">C4.5的python实现</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2020 ylylhl
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-" + backgroundnum +".jpg)";
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+    <script type="text/javascript">
+      window.onload = function(){
+        document.getElementById("search").onclick = function(){
+            console.log("search")
+            search();
+        }
+      }
+      function search(){
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+        (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+        e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','A1Pz-LKMXbrzcFg2FWi6','2.0.0');
+      }
+    </script>
+
+  </div>
+</body>
+</html>

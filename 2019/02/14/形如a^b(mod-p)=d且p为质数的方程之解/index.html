@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>形如a^b(mod p)=d且p为质数的方程之解 | ylylhl&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="RT">
+<meta name="keywords" content="BSGS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="形如a^b(mod p)=d且p为质数的方程之解">
+<meta property="og:url" content="http://ylylhl.github.io/2019/02/14/形如a^b(mod-p)=d且p为质数的方程之解/index.html">
+<meta property="og:site_name" content="ylylhl&#39;s blog">
+<meta property="og:description" content="RT">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-04-24T06:30:58.697Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="形如a^b(mod p)=d且p为质数的方程之解">
+<meta name="twitter:description" content="RT">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: false,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img src="/img/head.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title>ylylhl</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">明日のメダルと掴む腕</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="search" placeholder=" Search...">
+            </form>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">-首页-</a></li>
+                        
+                            <li><a href="/archives">-归档-</a></li>
+                        
+                            <li><a href="/about">-关于-</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=laKtpKWmpaKspdXk5Lv2_vg" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/ylylhl" title="github">github</a>
+                            
+                                <a class="fl weibo" target="_blank" href="https://weibo.com/u/5655801541" title="weibo">weibo</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Android逆向/" style="font-size: 10px;">Android逆向</a> <a href="/tags/BSGS/" style="font-size: 10px;">BSGS</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/web/" style="font-size: 15px;">web</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/汉化/" style="font-size: 10px;">汉化</a> <a href="/tags/算法练习/" style="font-size: 10px;">算法练习</a> <a href="/tags/逆向/" style="font-size: 15px;">逆向</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://obolu.github.io/">obolu的小博客</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">日常摸鱼，长期搬砖，ygo娱乐玩家，来打只看不产，布鲁游天下第一。</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">ylylhl</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img src="/img/head.png" class="js-avatar" style="width: 100%; height: 100%; opacity: 1;">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">ylylhl</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">明日のメダルと掴む腕</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">-首页-</a></li>
+                
+                    <li><a href="/archives">-归档-</a></li>
+                
+                    <li><a href="/about">-关于-</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=laKtpKWmpaKspdXk5Lv2_vg" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/ylylhl" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="https://weibo.com/u/5655801541" title="weibo">weibo</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-形如a^b(mod-p)=d且p为质数的方程之解" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/02/14/形如a^b(mod-p)=d且p为质数的方程之解/" class="article-date">
+      <time datetime="2019-02-14T09:29:10.000Z" itemprop="datePublished">2019-02-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      形如a^b(mod p)=d且p为质数的方程之解
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/杂物堆积/">杂物堆积</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BSGS/">BSGS</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in index | 首页摘要><br>RT<br><a id="more"></a></excerpt></p>
+<p><the rest of contents | 余下全文><br>今年没在打ctf了，但是听说又出了这种题（？？）<br>总之姑且总结一下目前碰到过的这几种，给自己存个档。<br>什么你说数学原理？不存在的，我又不是ACMer（此时一名搬砖民工抓起代码就是一个调用（不</the></p>
+<h2 id="已知a-b-p，求d"><a href="#已知a-b-p，求d" class="headerlink" title="已知a b p，求d"></a>已知a b p，求d</h2><p>一般情况下快速幂和快速乘比较保险，不过python可以直接<code>pow()</code>，只写快速幂也行，int任意精度是好文明（你看隔壁c++的long long又爆了（小声嘀咕<br>但是这里有个问题在于<code>pow()</code>的计算精度……想不太明白是怎么回事orz<br>具体体现可以看<a href="https://www.jianshu.com/p/f03f539f44d4" target="_blank" rel="noopener">安恒2018年7月赛-Crypto-dangerous rsa</a>这道题，到最后也没能解决，跪了（）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mul</span><span class="params">(a,b,p)</span>:</span></span><br><span class="line">  r=<span class="number">0</span></span><br><span class="line">  t=a</span><br><span class="line">  <span class="keyword">while</span>(b):</span><br><span class="line">    <span class="keyword">if</span>(b&amp;<span class="number">1</span>):</span><br><span class="line">      r=(r+t)%p</span><br><span class="line">    t=(t&lt;&lt;<span class="number">1</span>)%p</span><br><span class="line">    b&gt;&gt;=<span class="number">1</span></span><br><span class="line">  <span class="keyword">return</span> r</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fast_pow</span><span class="params">(a,b,p)</span>:</span></span><br><span class="line">    r=<span class="number">1</span></span><br><span class="line">    t=a</span><br><span class="line">    <span class="keyword">while</span>(b):</span><br><span class="line">        <span class="keyword">if</span>(b&amp;<span class="number">1</span>):</span><br><span class="line">          r=mul(r,t,p)%p</span><br><span class="line">        t=mul(t,t,p)%p</span><br><span class="line">        b&gt;&gt;=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> r</span><br><span class="line"></span><br><span class="line">print(fast_pow(<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+<p>题外话，快速幂有两种实现方式（递归和循环），此处采用循环，参考<a href="https://www.cnblogs.com/chengd/articles/7103854.html" target="_blank" rel="noopener">https://www.cnblogs.com/chengd/articles/7103854.html</a></p>
+<blockquote>
+<p>递归效率不高，递归层次过多会导致栈溢出（在计算机中，函数调用是通过栈（stack）这种数据结构实现的，每当进入一个函数调用，栈就会加一层栈帧，每当函数返回，栈就会减一层栈帧。由于栈的大小不是无限的，所以，递归调用的次数过多，会导致栈溢出）</p>
+</blockquote>
+<p>终于解答了去年给RSA写快速幂取模函数的时候出现的问题x唐突爆栈猝不及防（……）总之学到了写算法的时候要根据实际情况权衡时间复杂度和空间复杂度，通常情况下递归的时间复杂度比非递归的大很多，不能因为图好写就盲目递归（。<br>也反思了一下自己，学过数据结构我应该知道递归会爆栈才对啊为什么自己敲的时候根本没想到（……）<del>此时一名辣鸡路过</del></p>
+<h2 id="已知a-d-p，求b"><a href="#已知a-d-p，求b" class="headerlink" title="已知a d p，求b"></a>已知a d p，求b</h2><p>去年hgame第一周的题，题目名直接就是提示了，就算这样也折腾了好久，不玩ACM真吃亏，还很丢人（）<br>BSGS代码（原网址已挂）：<br><a href="https://pythonexample.com/snippet/bsgspy_0xtowel_python" target="_blank" rel="noopener">https://pythonexample.com/snippet/bsgspy_0xtowel_python</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Towel 2017</span></span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> ceil, sqrt</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bsgs</span><span class="params">(g, h, p)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    Solve for x in h = g^x mod p given a prime p.</span></span><br><span class="line"><span class="string">    If p is not prime, you shouldn't use BSGS anyway.</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    N = ceil(sqrt(p - <span class="number">1</span>)) <span class="comment"># phi(p) is p-1 if p is prime</span></span><br><span class="line">    <span class="comment"># Store hashmap of g^&#123;1...m&#125; (mod p). Baby step.</span></span><br><span class="line">    tbl = &#123;pow(g, i, p):i <span class="keyword">for</span> i <span class="keyword">in</span> range(N)&#125;</span><br><span class="line">    <span class="comment"># Precompute via Fermat's Little Theorem</span></span><br><span class="line">    c = pow(g, N * (p - <span class="number">2</span>), p)</span><br><span class="line">    <span class="comment"># Search for an equivalence in the table. Giant step.</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(N):</span><br><span class="line">        y = (h % p * pow(c, j, p)) % p</span><br><span class="line">        <span class="keyword">if</span> y <span class="keyword">in</span> tbl:</span><br><span class="line">            a = j * N + tbl[y]</span><br><span class="line">            print(a)</span><br><span class="line"><span class="comment">#            return j * N + tbl[y]</span></span><br><span class="line">    <span class="comment"># Solution not found</span></span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line"><span class="comment">#print(bsgs(73300775185, 527242847469, 650260984909))</span></span><br></pre></td></tr></table></figure>
+<p>题外话*2，扩展BSGS可以针对p不是质数的情况，这两个算法的具体原理可以参考：<br><a href="https://blog.csdn.net/lycheng1215/article/details/79047734" target="_blank" rel="noopener">https://blog.csdn.net/lycheng1215/article/details/79047734</a><br>附了c++的BSGSex代码，十分贴心（）<br>以及：<br><a href="https://blog.csdn.net/a27038/article/details/77341735" target="_blank" rel="noopener">https://blog.csdn.net/a27038/article/details/77341735</a><br>从原理到步骤到代码到应用都很详细，同样有附代码，强烈推荐。</p>
+<h2 id="已知b-d-p，求a"><a href="#已知b-d-p，求a" class="headerlink" title="已知b d p，求a"></a>已知b d p，求a</h2><p>是朋友前几天问我的题，我看到也是直接去世（……）<br>然后搜到了这篇，啊是大佬，我死了（<br><a href="https://blog.csdn.net/acdreamers/article/details/9500215" target="_blank" rel="noopener">https://blog.csdn.net/acdreamers/article/details/9500215</a></p>
+<p>过几天要是想起来了就补一下python版的代码。</p>
+<h2 id="扩展阅读-amp-实际应用"><a href="#扩展阅读-amp-实际应用" class="headerlink" title="扩展阅读&amp;实际应用"></a>扩展阅读&amp;实际应用</h2><hr>
+<ul>
+<li><a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001431756044276a15558a759ec43de8e30eb0ed169fb11000" target="_blank" rel="noopener">Python教程 - 递归函数 - 廖雪峰</a></li>
+<li><a href="https://blog.csdn.net/Cyan_rose/article/details/83065026" target="_blank" rel="noopener">【详解】快速幂&amp;龟速乘&amp;快速乘 - Cyan_rose
+</a></li>
+<li><a href="http://acm.fzu.edu.cn/problem.php?pid=1759" target="_blank" rel="noopener">FZU - 1759- Super A^B mod C</a></li>
+<li><a href="http://acm.hdu.edu.cn/showproblem.php?pid=5187" target="_blank" rel="noopener">HDU - 5187 - zhx’s contest</a></li>
+</ul>
+<hr>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Baby-step_giant-step" target="_blank" rel="noopener">Baby-step giant-step - Wikipedia</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Pohlig%E2%80%93Hellman_algorithm" target="_blank" rel="noopener">Pohlig–Hellman algorithm - Wikipedia</a></li>
+<li><a href="http://poj.org/problem?id=2417" target="_blank" rel="noopener">POJ - 2417 - Discrete Logging</a></li>
+</ul>
+<hr>
+<ul>
+<li><a href="https://www.cnblogs.com/w007878/p/3621653.html" target="_blank" rel="noopener">一些数论概念与算法——从SGU261谈起 - 雪琼 - 博客园</a></li>
+<li><a href="http://codeforces.com/problemsets/acmsguru/problem/99999/261" target="_blank" rel="noopener">SGU - 261 - Discrete Roots</a></li>
+<li><a href="http://acm.hdu.edu.cn/showproblem.php?pid=3930" target="_blank" rel="noopener">HDU - 3930 - Broot</a></li>
+</ul>
+<hr>
+
+      
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/02/14/形如a^b(mod-p)=d且p为质数的方程之解/">形如a^b(mod p)=d且p为质数的方程之解</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 ylylhl 的个人博客">ylylhl</a></p>
+        <p><span>发布时间:</span>2019年02月14日 - 17时29分</p>
+        <p><span>最后更新:</span>2020年04月24日 - 14时30分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/02/14/形如a^b(mod-p)=d且p为质数的方程之解/" title="形如a^b(mod p)=d且p为质数的方程之解">http://ylylhl.github.io/2019/02/14/形如a^b(mod-p)=d且p为质数的方程之解/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://ylylhl.github.io/2019/02/14/形如a^b(mod-p)=d且p为质数的方程之解/　　作者: ylylhl" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target="_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2019/03/15/XSS简述&入门/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          XSS学习笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/13/仓库：K-Means的python实现/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">K-means的python实现</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#已知a-b-p，求d"><span class="toc-number">1.</span> <span class="toc-text">已知a b p，求d</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#已知a-d-p，求b"><span class="toc-number">2.</span> <span class="toc-text">已知a d p，求b</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#已知b-d-p，求a"><span class="toc-number">3.</span> <span class="toc-text">已知b d p，求a</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读-amp-实际应用"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读&amp;实际应用</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+<div class="share">
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+    <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+    <a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+    </div>
+    <script>
+        window._bd_share_config={
+            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+</div>
+
+
+
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2019/03/15/XSS简述&入门/" title="上一篇: XSS学习笔记">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/04/13/仓库：K-Means的python实现/" title="下一篇: K-means的python实现">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/04/03/LeetCode-很缓慢地存些东西/">LeetCode：很缓慢地存些东西</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/21/KNN的python实现/">KNN的python实现&简单应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/11/DVWA文件上传/">DVWA文件上传</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/恶意代码分析实战Lab03_3/">恶意代码分析实战lab03-3</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/22/ライダーあつめ反编译过程/">《ライダーあつめ》反编译过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/31/恶意代码分析实战lab01/">恶意代码分析实战lab01-2/3/4</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/XSS简述&入门/">XSS学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/14/形如a^b(mod-p)=d且p为质数的方程之解/">形如a^b(mod p)=d且p为质数的方程之解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/13/仓库：K-Means的python实现/">K-means的python实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/29/仓库：C4-5的python实现/">C4.5的python实现</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2020 ylylhl
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-" + backgroundnum +".jpg)";
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+    <script type="text/javascript">
+      window.onload = function(){
+        document.getElementById("search").onclick = function(){
+            console.log("search")
+            search();
+        }
+      }
+      function search(){
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+        (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+        e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','A1Pz-LKMXbrzcFg2FWi6','2.0.0');
+      }
+    </script>
+
+  </div>
+</body>
+</html>
