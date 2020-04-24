@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>关于usb流量分析 | ylylhl&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="简要总结了下CTF里usb流量分析题的操作。">
+<meta name="keywords" content="流量分析,usb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于usb流量分析">
+<meta property="og:url" content="http://ylylhl.github.io/2018/04/30/关于usb流量分析/index.html">
+<meta property="og:site_name" content="ylylhl&#39;s blog">
+<meta property="og:description" content="简要总结了下CTF里usb流量分析题的操作。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-04-24T09:17:54.425Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于usb流量分析">
+<meta name="twitter:description" content="简要总结了下CTF里usb流量分析题的操作。">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: false,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img src="/img/head.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title>ylylhl</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">明日のメダルと掴む腕</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="search" placeholder=" Search...">
+            </form>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">-首页-</a></li>
+                        
+                            <li><a href="/archives">-归档-</a></li>
+                        
+                            <li><a href="/about">-关于-</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=laKtpKWmpaKspdXk5Lv2_vg" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/ylylhl" title="github">github</a>
+                            
+                                <a class="fl weibo" target="_blank" href="https://weibo.com/u/5655801541" title="weibo">weibo</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Android逆向/" style="font-size: 10px;">Android逆向</a> <a href="/tags/BSGS/" style="font-size: 10px;">BSGS</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/usb/" style="font-size: 10px;">usb</a> <a href="/tags/web/" style="font-size: 15px;">web</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/汉化/" style="font-size: 10px;">汉化</a> <a href="/tags/流量分析/" style="font-size: 10px;">流量分析</a> <a href="/tags/算法练习/" style="font-size: 10px;">算法练习</a> <a href="/tags/逆向/" style="font-size: 15px;">逆向</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://obolu.github.io/">obolu的小博客</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://www.lhyerror404.cn/">ERROR404</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.5am3.com/">5am3</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">日常摸鱼，长期搬砖，ygo娱乐玩家，来打只看不产，布鲁游天下第一。</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">ylylhl</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img src="/img/head.png" class="js-avatar" style="width: 100%; height: 100%; opacity: 1;">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">ylylhl</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">明日のメダルと掴む腕</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">-首页-</a></li>
+                
+                    <li><a href="/archives">-归档-</a></li>
+                
+                    <li><a href="/about">-关于-</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=laKtpKWmpaKspdXk5Lv2_vg" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/ylylhl" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="https://weibo.com/u/5655801541" title="weibo">weibo</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-关于usb流量分析" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/04/30/关于usb流量分析/" class="article-date">
+      <time datetime="2018-04-30T13:07:06.000Z" itemprop="datePublished">2018-04-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      关于usb流量分析
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/杂物堆积/">杂物堆积</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/usb/">usb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/流量分析/">流量分析</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in index | 首页摘要><br>简要总结了下CTF里usb流量分析题的操作。<br><a id="more"></a></excerpt></p>
+<p><the rest of contents | 余下全文><br>我的天啊战队那个页面，卡到昏迷，嗦不出发（<br>等想起来每月一篇的时候已经是30号下午四点了，整个人都 我的冷静就是这样.jpg<br>我知道这篇水了我反省……求不打……</the></p>
+<p>总之前略，朋友，usb了解一下（不是）<br><a href="http://www.usb.org/developers/hidpage/Hut1_12v2.pdf" target="_blank" rel="noopener">http://www.usb.org/developers/hidpage/Hut1_12v2.pdf</a></p>
+<p>文中提到的例题下载：<br>链接：<a href="https://pan.baidu.com/s/1g-cAdNzl3YoCFZoq1F6UCA" target="_blank" rel="noopener">https://pan.baidu.com/s/1g-cAdNzl3YoCFZoq1F6UCA</a> 密码：rltz</p>
+<h2 id="鼠标流量"><a href="#鼠标流量" class="headerlink" title="鼠标流量"></a>鼠标流量</h2><blockquote>
+<p>鼠标移动时表现为连续性，与键盘击键的离散性不一样，<br>不过实际上鼠标动作所产生的数据包也是离散的</p>
+</blockquote>
+<p>每一个数据包的数据区有四个字节，第一个字节代表按键，当取<code>0x00</code>时，代表没有按键、为<code>0x01</code>时，代表按左键，为<code>0x02</code>时，代表当前按键为右键。第二个字节可以看成是一个signed byte类型，其最高位为符号位，当这个值为正时，代表鼠标水平右移多少像素，为负时，代表水平左移多少像素。第三个字节与第二字节类似，代表垂直上下移动的偏移。</p>
+<h2 id="键盘流量"><a href="#键盘流量" class="headerlink" title="键盘流量"></a>键盘流量</h2><p>键盘数据包的数据长度为8个字节，击键信息集中在第3个字节</p>
+<blockquote>
+<p>BYTE1 –<br>       |–bit0:   Left Control是否按下，按下为1<br>       |–bit1:   Left Shift  是否按下，按下为1<br>       |–bit2:   Left Alt    是否按下，按下为1<br>       |–bit3:   Left GUI    是否按下，按下为1<br>       |–bit4:   Right Control是否按下，按下为1<br>       |–bit5:   Right Shift 是否按下，按下为1<br>       |–bit6:   Right Alt   是否按下，按下为1<br>       |–bit7:   Right GUI   是否按下，按下为1<br>BYTE2 – 暂不清楚，有的地方说是保留位<br>BYTE3–BYTE8 – 这六个为普通按键</p>
+</blockquote>
+<p>例如：<br>键盘发送 <code>02 00 0e 00 00 00 00 00</code>，<br>表示同时按下了<code>Left Shift</code> + <code>‘k’</code>，即大写K。<br>具体键位对应参见<code>Hut1_12v2.pdf</code>第53页。<br>eg：HITCTF2018-MISC-键盘流量分析</p>
+<h2 id="常规操作"><a href="#常规操作" class="headerlink" title="常规操作"></a>常规操作</h2><p>感谢一航大佬造福民众写了两个方便快捷的工具向大佬低头.jpg</p>
+<h3 id="从流量包中提取"><a href="#从流量包中提取" class="headerlink" title="从流量包中提取"></a>从流量包中提取</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tshark -r keyboard.pcap -T fields -e usb.capdata &gt; usbdata.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#18.8.10 同学问才想起来这里还有个坑，稍改了下，自动识别大小写+删除</span></span><br><span class="line">normalKeys = &#123;<span class="string">"04"</span>:<span class="string">"a"</span>, <span class="string">"05"</span>:<span class="string">"b"</span>, <span class="string">"06"</span>:<span class="string">"c"</span>, <span class="string">"07"</span>:<span class="string">"d"</span>, <span class="string">"08"</span>:<span class="string">"e"</span>, <span class="string">"09"</span>:<span class="string">"f"</span>, <span class="string">"0a"</span>:<span class="string">"g"</span>, <span class="string">"0b"</span>:<span class="string">"h"</span>, <span class="string">"0c"</span>:<span class="string">"i"</span>, <span class="string">"0d"</span>:<span class="string">"j"</span>, <span class="string">"0e"</span>:<span class="string">"k"</span>, <span class="string">"0f"</span>:<span class="string">"l"</span>, <span class="string">"10"</span>:<span class="string">"m"</span>, <span class="string">"11"</span>:<span class="string">"n"</span>, <span class="string">"12"</span>:<span class="string">"o"</span>, <span class="string">"13"</span>:<span class="string">"p"</span>, <span class="string">"14"</span>:<span class="string">"q"</span>, <span class="string">"15"</span>:<span class="string">"r"</span>, <span class="string">"16"</span>:<span class="string">"s"</span>, <span class="string">"17"</span>:<span class="string">"t"</span>, <span class="string">"18"</span>:<span class="string">"u"</span>, <span class="string">"19"</span>:<span class="string">"v"</span>, <span class="string">"1a"</span>:<span class="string">"w"</span>, <span class="string">"1b"</span>:<span class="string">"x"</span>, <span class="string">"1c"</span>:<span class="string">"y"</span>, <span class="string">"1d"</span>:<span class="string">"z"</span>,<span class="string">"1e"</span>:<span class="string">"1"</span>, <span class="string">"1f"</span>:<span class="string">"2"</span>, <span class="string">"20"</span>:<span class="string">"3"</span>, <span class="string">"21"</span>:<span class="string">"4"</span>, <span class="string">"22"</span>:<span class="string">"5"</span>, <span class="string">"23"</span>:<span class="string">"6"</span>,<span class="string">"24"</span>:<span class="string">"7"</span>,<span class="string">"25"</span>:<span class="string">"8"</span>,<span class="string">"26"</span>:<span class="string">"9"</span>,<span class="string">"27"</span>:<span class="string">"0"</span>,<span class="string">"28"</span>:<span class="string">"&lt;RET&gt;"</span>,<span class="string">"29"</span>:<span class="string">"&lt;ESC&gt;"</span>,<span class="string">"2a"</span>:<span class="string">"&lt;DEL&gt;"</span>, <span class="string">"2b"</span>:<span class="string">"\t"</span>,<span class="string">"2c"</span>:<span class="string">"&lt;SPACE&gt;"</span>,<span class="string">"2d"</span>:<span class="string">"-"</span>,<span class="string">"2e"</span>:<span class="string">"="</span>,<span class="string">"2f"</span>:<span class="string">"["</span>,<span class="string">"30"</span>:<span class="string">"]"</span>,<span class="string">"31"</span>:<span class="string">"\\"</span>,<span class="string">"32"</span>:<span class="string">"&lt;NON&gt;"</span>,<span class="string">"33"</span>:<span class="string">";"</span>,<span class="string">"34"</span>:<span class="string">"'"</span>,<span class="string">"35"</span>:<span class="string">"&lt;GA&gt;"</span>,<span class="string">"36"</span>:<span class="string">","</span>,<span class="string">"37"</span>:<span class="string">"."</span>,<span class="string">"38"</span>:<span class="string">"/"</span>,<span class="string">"39"</span>:<span class="string">"&lt;CAP&gt;"</span>,<span class="string">"3a"</span>:<span class="string">"&lt;F1&gt;"</span>,<span class="string">"3b"</span>:<span class="string">"&lt;F2&gt;"</span>, <span class="string">"3c"</span>:<span class="string">"&lt;F3&gt;"</span>,<span class="string">"3d"</span>:<span class="string">"&lt;F4&gt;"</span>,<span class="string">"3e"</span>:<span class="string">"&lt;F5&gt;"</span>,<span class="string">"3f"</span>:<span class="string">"&lt;F6&gt;"</span>,<span class="string">"40"</span>:<span class="string">"&lt;F7&gt;"</span>,<span class="string">"41"</span>:<span class="string">"&lt;F8&gt;"</span>,<span class="string">"42"</span>:<span class="string">"&lt;F9&gt;"</span>,<span class="string">"43"</span>:<span class="string">"&lt;F10&gt;"</span>,<span class="string">"44"</span>:<span class="string">"&lt;F11&gt;"</span>,<span class="string">"45"</span>:<span class="string">"&lt;F12&gt;"</span>&#125;</span><br><span class="line">shiftKeys = &#123;<span class="string">"04"</span>:<span class="string">"A"</span>, <span class="string">"05"</span>:<span class="string">"B"</span>, <span class="string">"06"</span>:<span class="string">"C"</span>, <span class="string">"07"</span>:<span class="string">"D"</span>, <span class="string">"08"</span>:<span class="string">"E"</span>, <span class="string">"09"</span>:<span class="string">"F"</span>, <span class="string">"0a"</span>:<span class="string">"G"</span>, <span class="string">"0b"</span>:<span class="string">"H"</span>, <span class="string">"0c"</span>:<span class="string">"I"</span>, <span class="string">"0d"</span>:<span class="string">"J"</span>, <span class="string">"0e"</span>:<span class="string">"K"</span>, <span class="string">"0f"</span>:<span class="string">"L"</span>, <span class="string">"10"</span>:<span class="string">"M"</span>, <span class="string">"11"</span>:<span class="string">"N"</span>, <span class="string">"12"</span>:<span class="string">"O"</span>, <span class="string">"13"</span>:<span class="string">"P"</span>, <span class="string">"14"</span>:<span class="string">"Q"</span>, <span class="string">"15"</span>:<span class="string">"R"</span>, <span class="string">"16"</span>:<span class="string">"S"</span>, <span class="string">"17"</span>:<span class="string">"T"</span>, <span class="string">"18"</span>:<span class="string">"U"</span>, <span class="string">"19"</span>:<span class="string">"V"</span>, <span class="string">"1a"</span>:<span class="string">"W"</span>, <span class="string">"1b"</span>:<span class="string">"X"</span>, <span class="string">"1c"</span>:<span class="string">"Y"</span>, <span class="string">"1d"</span>:<span class="string">"Z"</span>,<span class="string">"1e"</span>:<span class="string">"!"</span>, <span class="string">"1f"</span>:<span class="string">"@"</span>, <span class="string">"20"</span>:<span class="string">"#"</span>, <span class="string">"21"</span>:<span class="string">"$"</span>, <span class="string">"22"</span>:<span class="string">"%"</span>, <span class="string">"23"</span>:<span class="string">"^"</span>,<span class="string">"24"</span>:<span class="string">"&amp;"</span>,<span class="string">"25"</span>:<span class="string">"*"</span>,<span class="string">"26"</span>:<span class="string">"("</span>,<span class="string">"27"</span>:<span class="string">")"</span>,<span class="string">"28"</span>:<span class="string">"&lt;RET&gt;"</span>,<span class="string">"29"</span>:<span class="string">"&lt;ESC&gt;"</span>,<span class="string">"2a"</span>:<span class="string">"&lt;DEL&gt;"</span>, <span class="string">"2b"</span>:<span class="string">"\t"</span>,<span class="string">"2c"</span>:<span class="string">"&lt;SPACE&gt;"</span>,<span class="string">"2d"</span>:<span class="string">"_"</span>,<span class="string">"2e"</span>:<span class="string">"+"</span>,<span class="string">"2f"</span>:<span class="string">"&#123;"</span>,<span class="string">"30"</span>:<span class="string">"&#125;"</span>,<span class="string">"31"</span>:<span class="string">"|"</span>,<span class="string">"32"</span>:<span class="string">"&lt;NON&gt;"</span>,<span class="string">"33"</span>:<span class="string">"\""</span>,<span class="string">"34"</span>:<span class="string">":"</span>,<span class="string">"35"</span>:<span class="string">"&lt;GA&gt;"</span>,<span class="string">"36"</span>:<span class="string">"&lt;"</span>,<span class="string">"37"</span>:<span class="string">"&gt;"</span>,<span class="string">"38"</span>:<span class="string">"?"</span>,<span class="string">"39"</span>:<span class="string">"&lt;CAP&gt;"</span>,<span class="string">"3a"</span>:<span class="string">"&lt;F1&gt;"</span>,<span class="string">"3b"</span>:<span class="string">"&lt;F2&gt;"</span>, <span class="string">"3c"</span>:<span class="string">"&lt;F3&gt;"</span>,<span class="string">"3d"</span>:<span class="string">"&lt;F4&gt;"</span>,<span class="string">"3e"</span>:<span class="string">"&lt;F5&gt;"</span>,<span class="string">"3f"</span>:<span class="string">"&lt;F6&gt;"</span>,<span class="string">"40"</span>:<span class="string">"&lt;F7&gt;"</span>,<span class="string">"41"</span>:<span class="string">"&lt;F8&gt;"</span>,<span class="string">"42"</span>:<span class="string">"&lt;F9&gt;"</span>,<span class="string">"43"</span>:<span class="string">"&lt;F10&gt;"</span>,<span class="string">"44"</span>:<span class="string">"&lt;F11&gt;"</span>,<span class="string">"45"</span>:<span class="string">"&lt;F12&gt;"</span>&#125;</span><br><span class="line">output = []</span><br><span class="line">keys = open(<span class="string">'usbdata.txt'</span>)</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> keys:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">if</span> line[<span class="number">0</span>]!=<span class="string">'0'</span> <span class="keyword">or</span> (line[<span class="number">1</span>]!=<span class="string">'0'</span> <span class="keyword">and</span> line[<span class="number">1</span>]!=<span class="string">'2'</span>) <span class="keyword">or</span> line[<span class="number">3</span>]!=<span class="string">'0'</span> <span class="keyword">or</span> line[<span class="number">4</span>]!=<span class="string">'0'</span> <span class="keyword">or</span> line[<span class="number">9</span>]!=<span class="string">'0'</span> <span class="keyword">or</span> line[<span class="number">10</span>]!=<span class="string">'0'</span> <span class="keyword">or</span> line[<span class="number">12</span>]!=<span class="string">'0'</span> <span class="keyword">or</span> line[<span class="number">13</span>]!=<span class="string">'0'</span> <span class="keyword">or</span> line[<span class="number">15</span>]!=<span class="string">'0'</span> <span class="keyword">or</span> line[<span class="number">16</span>]!=<span class="string">'0'</span> <span class="keyword">or</span> line[<span class="number">18</span>]!=<span class="string">'0'</span> <span class="keyword">or</span> line[<span class="number">19</span>]!=<span class="string">'0'</span> <span class="keyword">or</span> line[<span class="number">21</span>]!=<span class="string">'0'</span> <span class="keyword">or</span> line[<span class="number">22</span>]!=<span class="string">'0'</span> <span class="keyword">or</span> line[<span class="number">6</span>:<span class="number">8</span>]==<span class="string">"00"</span>:</span><br><span class="line">             <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">if</span> line[<span class="number">6</span>:<span class="number">8</span>] <span class="keyword">in</span> normalKeys.keys():</span><br><span class="line">            output += [[normalKeys[line[<span class="number">6</span>:<span class="number">8</span>]]],[shiftKeys[line[<span class="number">6</span>:<span class="number">8</span>]]]][line[<span class="number">1</span>]==<span class="string">'2'</span>]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            output += [<span class="string">'[unknown]'</span>]</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">keys.close()</span><br><span class="line"></span><br><span class="line">flag=<span class="number">0</span></span><br><span class="line">print(<span class="string">""</span>.join(output))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(output)):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        a=output.index(<span class="string">'&lt;DEL&gt;'</span>)</span><br><span class="line">        <span class="keyword">del</span> output[a]</span><br><span class="line">        <span class="keyword">del</span> output[a<span class="number">-1</span>]</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(output)):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">if</span> output[i]==<span class="string">"&lt;CAP&gt;"</span>:</span><br><span class="line">            flag+=<span class="number">1</span></span><br><span class="line">            output.pop(i)</span><br><span class="line">            <span class="keyword">if</span> flag==<span class="number">2</span>:</span><br><span class="line">                flag=<span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> flag!=<span class="number">0</span>:</span><br><span class="line">            output[i]=output[i].upper()</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">print</span> (<span class="string">'output :'</span> + <span class="string">""</span>.join(output))</span><br></pre></td></tr></table></figure>
+<h3 id="利用工具"><a href="#利用工具" class="headerlink" title="利用工具"></a>利用工具</h3><ul>
+<li><a href="https://github.com/WangYihang/UsbMiceDataHacker" target="_blank" rel="noopener">UsbMiceDataHacker</a></li>
+<li><a href="https://github.com/WangYihang/UsbKeyboardDataHacker" target="_blank" rel="noopener">UsbKeyboardDataHacker</a></li>
+</ul>
+<h2 id="拓展阅读-amp-参考页面"><a href="#拓展阅读-amp-参考页面" class="headerlink" title="拓展阅读&amp;参考页面"></a>拓展阅读&amp;参考页面</h2><p><a href="https://ctf-wiki.github.io/ctf-wiki/misc/traffic/protocols/" target="_blank" rel="noopener">https://ctf-wiki.github.io/ctf-wiki/misc/traffic/protocols/</a><br><a href="https://www.anquanke.com/post/id/85218" target="_blank" rel="noopener">https://www.anquanke.com/post/id/85218</a></p>
+
+      
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/04/30/关于usb流量分析/">关于usb流量分析</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 ylylhl 的个人博客">ylylhl</a></p>
+        <p><span>发布时间:</span>2018年04月30日 - 21时07分</p>
+        <p><span>最后更新:</span>2020年04月24日 - 17时17分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/04/30/关于usb流量分析/" title="关于usb流量分析">http://ylylhl.github.io/2018/04/30/关于usb流量分析/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://ylylhl.github.io/2018/04/30/关于usb流量分析/　　作者: ylylhl" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target="_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2019/02/14/形如a^b(mod-p)=d且p为质数的方程之解/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          形如a^b(mod p)=d且p为质数的方程之解
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/13/仓库：K-Means的python实现/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">K-means的python实现</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#鼠标流量"><span class="toc-number">1.</span> <span class="toc-text">鼠标流量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#键盘流量"><span class="toc-number">2.</span> <span class="toc-text">键盘流量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常规操作"><span class="toc-number">3.</span> <span class="toc-text">常规操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#从流量包中提取"><span class="toc-number">3.1.</span> <span class="toc-text">从流量包中提取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#利用工具"><span class="toc-number">3.2.</span> <span class="toc-text">利用工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#拓展阅读-amp-参考页面"><span class="toc-number">4.</span> <span class="toc-text">拓展阅读&amp;参考页面</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+<div class="share">
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+    <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+    <a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+    </div>
+    <script>
+        window._bd_share_config={
+            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+</div>
+
+
+
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2019/02/14/形如a^b(mod-p)=d且p为质数的方程之解/" title="上一篇: 形如a^b(mod p)=d且p为质数的方程之解">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/04/13/仓库：K-Means的python实现/" title="下一篇: K-means的python实现">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/04/03/LeetCode-很缓慢地存些东西/">LeetCode：很缓慢地存些东西</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/21/KNN的python实现/">KNN的python实现&简单应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/11/DVWA文件上传/">DVWA文件上传</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/恶意代码分析实战Lab03_3/">恶意代码分析实战lab03-3</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/22/ライダーあつめ反编译过程/">《ライダーあつめ》反编译过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/31/恶意代码分析实战lab01/">恶意代码分析实战lab01-2/3/4</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/XSS简述&入门/">XSS学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/14/形如a^b(mod-p)=d且p为质数的方程之解/">形如a^b(mod p)=d且p为质数的方程之解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/30/关于usb流量分析/">关于usb流量分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/13/仓库：K-Means的python实现/">K-means的python实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/29/仓库：C4-5的python实现/">C4.5的python实现</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2020 ylylhl
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-" + backgroundnum +".jpg)";
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+    <script type="text/javascript">
+      window.onload = function(){
+        document.getElementById("search").onclick = function(){
+            console.log("search")
+            search();
+        }
+      }
+      function search(){
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+        (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+        e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','A1Pz-LKMXbrzcFg2FWi6','2.0.0');
+      }
+    </script>
+
+  </div>
+</body>
+</html>
