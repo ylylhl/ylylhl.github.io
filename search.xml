@@ -51,15 +51,15 @@
       
         <tags>
             
+            <tag> DFS </tag>
+            
+            <tag> DP </tag>
+            
             <tag> 分治 </tag>
             
             <tag> 线段树 </tag>
             
             <tag> 贪心 </tag>
-            
-            <tag> DFS </tag>
-            
-            <tag> DP </tag>
             
             <tag> 树hash </tag>
             
@@ -86,11 +86,11 @@
       
         <tags>
             
+            <tag> BFS </tag>
+            
             <tag> 贪心 </tag>
             
             <tag> 双指针 </tag>
-            
-            <tag> BFS </tag>
             
             <tag> 回溯 </tag>
             
